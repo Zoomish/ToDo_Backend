@@ -25,11 +25,25 @@ export class CallbackService {
                 case null:
                     return console.log(1)
                 case 'next-month':
-                    return console.log(2)
+                    return this.deferredService.getPage(
+                        calendar.date,
+                        msg,
+                        bot
+                    )
+                case 'prev-month':
+                    return this.deferredService.getPage(
+                        calendar.date,
+                        msg,
+                        bot
+                    )
                 case 'select-year':
                     return this.deferredService.getYears(bot, msg)
                 case 'set-year':
-                    return this.deferredService.getPage(calendar.date, msg, 'Выберите дату', bot)
+                    return this.deferredService.getPage(
+                        calendar.date,
+                        msg,
+                        bot
+                    )
                 default:
                     break
             }

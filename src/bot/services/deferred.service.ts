@@ -20,9 +20,10 @@ export class DeferredService {
         })
     }
 
-    async getPage(time, msg, text, bot) {
-        bot.sendMessage(msg.chat.id, text, {
-            parse_mode: 'html',
+    async getPage(time, msg, bot) {
+        bot.editMessageText('Выберите дату', {
+            chat_id: msg.chat.id,
+            message_id: msg.message_id,
             reply_markup: JSON.stringify({
                 inline_keyboard: this.calendar.getPage(time),
                 callback_data: 'date',
