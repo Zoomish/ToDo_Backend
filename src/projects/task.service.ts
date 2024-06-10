@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Project } from './model/task.model'
 import { InjectModel } from '@nestjs/sequelize'
-import { CreateProjectDto } from './dto/create-project.dto'
+import { CreateProjectDto } from './dto/create-task.dto'
 import { UserService } from 'src/user/user.service'
 
 @Injectable()
