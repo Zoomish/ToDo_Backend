@@ -3,7 +3,6 @@ import { BotService } from './bot.service'
 import {
     GreetingService,
     CallbackService,
-    MeService,
     ProjectService,
     HelpService,
 } from './services'
@@ -17,7 +16,6 @@ import { UserModule } from 'src/user/user.module'
         GreetingService,
         CallbackService,
         ProjectService,
-        MeService,
         HelpService,
     ],
     exports: [],

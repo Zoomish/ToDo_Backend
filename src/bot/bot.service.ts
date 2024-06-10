@@ -5,7 +5,6 @@ import {
     CallbackService,
     GreetingService,
     ProjectService,
-    MeService,
     HelpService,
 } from './services'
 
@@ -14,7 +13,6 @@ export class BotService implements OnModuleInit {
     constructor(
         private readonly callbackService: CallbackService,
         private readonly projectService: ProjectService,
-        private readonly meService: MeService,
         private readonly configService: ConfigService,
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService
@@ -35,8 +33,6 @@ export class BotService implements OnModuleInit {
             switch (text) {
                 case '/start':
                     return this.greetingService.greeting(bot, chatId, msg)
-                case '/about':
-                    return this.meService.getMe(bot, msg)
                 case '/projects':
                     return await this.projectService.getProjects(bot, msg)
                 case '/help':
