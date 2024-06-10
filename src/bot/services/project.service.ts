@@ -3,10 +3,10 @@ import { TaskService } from 'src/projects/task.service'
 
 @Injectable()
 export class ProjectService {
-    constructor(private readonly TaskService: TaskService) {}
+    constructor(private readonly taskService: TaskService) {}
     async getProjects(bot, msg) {
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
-        const data = await this.TaskService.findAll()
+        const data = await this.taskService.findAll()
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
         return await data.map(async (project) => {
             await bot.sendPhoto(msg.chat.id, `${project.image}`, {

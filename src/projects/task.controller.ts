@@ -12,11 +12,11 @@ import { CreateTaskDto } from './dto/create-task.dto'
 
 @Controller('projects')
 export class TaskController {
-    constructor(private readonly TaskService: TaskService) {}
+    constructor(private readonly taskService: TaskService) {}
 
     @Get()
     findAll() {
-        return this.TaskService.findAll()
+        return this.taskService.findAll()
     }
 
     @Get('/AAA')
@@ -26,21 +26,21 @@ export class TaskController {
 
     @Post()
     create(@Body() dto: CreateTaskDto) {
-        return this.TaskService.create(dto)
+        return this.taskService.create(dto)
     }
 
     @Get(':id')
     findOne(@Param('id') id: string) {
-        return this.TaskService.findOne(+id)
+        return this.taskService.findOne(+id)
     }
 
     @Patch(':id')
     update(@Param('id') id: string) {
-        return this.TaskService.update(+id)
+        return this.taskService.update(+id)
     }
 
     @Delete(':id')
     remove(@Param('id') id: string) {
-        return this.TaskService.remove(+id)
+        return this.taskService.remove(+id)
     }
 }
