@@ -6,6 +6,7 @@ interface UserCreationAttrs {
     tasks: Task[]
     login: string
     password: string
+    tg_id: number
 }
 @Table({ tableName: 'user' })
 export class User extends Model<User, UserCreationAttrs> {
@@ -25,6 +26,9 @@ export class User extends Model<User, UserCreationAttrs> {
 
     @Column({ type: DataType.STRING(4048), allowNull: false })
     password: string
+
+    @Column({ type: DataType.BIGINT, allowNull: false })
+    tg_id: number
 
     @HasMany(() => Task)
     tasks: Task[]
