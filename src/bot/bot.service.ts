@@ -1,12 +1,12 @@
 import { Injectable, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import schedule = require('node-schedule')
 import telegram = require('node-telegram-bot-api')
 import {
     CallbackService,
     GreetingService,
     ProjectService,
     HelpService,
+    DeferredService,
 } from './services'
 
 @Injectable()
@@ -16,7 +16,8 @@ export class BotService implements OnModuleInit {
         private readonly projectService: ProjectService,
         private readonly configService: ConfigService,
         private readonly helpService: HelpService,
-        private readonly greetingService: GreetingService
+        private readonly greetingService: GreetingService,
+        private readonly deferredService: DeferredService
     ) {}
 
     async onModuleInit() {
@@ -45,16 +46,10 @@ export class BotService implements OnModuleInit {
             }
         })
         bot.onText(/\/send/, (msg) => {
-            this.sendTime(1, msg, 'текст', bot)
+            this.deferredService.sendTime(1, msg, 'текст', bot)
         })
         bot.on('callback_query', async (callbackQuery) => {
             await this.callbackService.callback(bot, callbackQuery)
-        })
-    }
-    async sendTime(time, msg, text, bot) {
-        const date = +new Date() + time * 60 * 1000
-        new schedule.scheduleJob(date, function () {
-            bot.sendMessage(msg.chat.id, text)
         })
     }
 }

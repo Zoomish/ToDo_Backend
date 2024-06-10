@@ -5,6 +5,7 @@ import {
     CallbackService,
     ProjectService,
     HelpService,
+    DeferredService,
 } from './services'
 import { TaskModule } from 'src/task/task.module'
 import { UserModule } from 'src/user/user.module'
@@ -17,6 +18,7 @@ import { UserModule } from 'src/user/user.module'
         CallbackService,
         ProjectService,
         HelpService,
+        DeferredService,
     ],
     exports: [],
 })
