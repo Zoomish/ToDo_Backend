@@ -52,7 +52,7 @@ export class BotService implements OnModuleInit {
         })
     }
     async sendTime(time, msg, text, bot) {
-        const date = +new Date() + time * 1000
+        const date = +new Date() + time * 60 * 1000
         console.log(date)
 
         new schedule.scheduleJob(date, function () {
