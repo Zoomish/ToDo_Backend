@@ -20,9 +20,20 @@ export class DeferredService {
         })
     }
 
-    async getYears(bot, msg) {
-        bot.editMessageText(msg.chat.id, 'Выберите год', {
+    async getPage(time, msg, text, bot) {
+        bot.sendMessage(msg.chat.id, text, {
             parse_mode: 'html',
+            reply_markup: JSON.stringify({
+                inline_keyboard: this.calendar.getPage(time),
+                callback_data: 'date',
+            }),
+        })
+    }
+
+    async getYears(bot, msg) {
+        bot.editMessageText('Выберите год', {
+            chat_id: msg.chat.id,
+            message_id: msg.message_id,
             reply_markup: JSON.stringify({
                 inline_keyboard: this.calendar.getYears(new Date()),
                 callback_data: 'date',

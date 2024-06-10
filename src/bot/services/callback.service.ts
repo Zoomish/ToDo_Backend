@@ -28,6 +28,8 @@ export class CallbackService {
                     return console.log(2)
                 case 'select-year':
                     return this.deferredService.getYears(bot, msg)
+                case 'set-year':
+                    return this.deferredService.getPage(calendar.date, msg, 'Выберите дату', bot)
                 default:
                     break
             }
