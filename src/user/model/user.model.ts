@@ -3,6 +3,7 @@ import { Task } from 'src/task/model/task.model'
 
 interface UserCreationAttrs {
     nickname: string
+    tasks: Task[]
 }
 @Table({ tableName: 'user' })
 export class User extends Model<User, UserCreationAttrs> {
