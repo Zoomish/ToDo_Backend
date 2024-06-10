@@ -7,6 +7,15 @@ export class DeferredService {
     calendar = new Calendar({
         minDate: new Date(),
     })
+    async pickTime(msg, bot) {
+        return bot.sendMessage(msg.chat.id, 'Выберите дату', {
+            parse_mode: 'html',
+            reply_markup: JSON.stringify({
+                inline_keyboard: this.calendar.getPage(new Date()),
+                callback_data: 'date',
+            }),
+        })
+    }
     async sendTime(time, msg, text, bot) {
         const date = +new Date() + time * 60 * 1000
         new schedule.scheduleJob(date, () => {
