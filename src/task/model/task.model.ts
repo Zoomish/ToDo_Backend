@@ -17,8 +17,8 @@ interface ProjectCreationAttrs {
     live: string
     userId: number
 }
-@Table({ tableName: 'projects' })
-export class Project extends Model<Project, ProjectCreationAttrs> {
+@Table({ tableName: 'task' })
+export class Task extends Model<Task, ProjectCreationAttrs> {
     @Column({
         type: DataType.INTEGER,
         unique: true,

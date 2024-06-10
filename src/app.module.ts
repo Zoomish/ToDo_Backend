@@ -5,7 +5,7 @@ import { ServeStaticModule } from '@nestjs/serve-static'
 import * as path from 'path'
 import { BotModule } from './bot/bot.module'
 import { configurator } from './configurator'
-import { Project } from './task/model/task.model'
+import { Task } from './task/model/task.model'
 import { TaskModule } from './task/task.module'
 import { UserModule } from './user/user.module'
 import { User } from './user/model/user.model'
@@ -35,7 +35,7 @@ import { User } from './user/model/user.model'
                     rejectUnauthorized: false,
                 },
             },
-            models: [Project, User],
+            models: [Task, User],
             autoLoadModels: true,
             synchronize: true,
         }),

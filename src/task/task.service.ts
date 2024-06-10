@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Project } from './model/task.model'
+import { Task } from './model/task.model'
 import { InjectModel } from '@nestjs/sequelize'
 import { CreateTaskDto } from './dto/create-task.dto'
 import { UserService } from 'src/user/user.service'
@@ -7,7 +7,7 @@ import { UserService } from 'src/user/user.service'
 @Injectable()
 export class TaskService {
     constructor(
-        @InjectModel(Project) private projectRepository: typeof Project,
+        @InjectModel(Task) private projectRepository: typeof Task,
         private userService: UserService
     ) {}
     async findAll() {
