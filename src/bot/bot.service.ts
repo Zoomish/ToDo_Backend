@@ -52,10 +52,11 @@ export class BotService implements OnModuleInit {
         })
     }
     async sendTime(time, msg, text, bot) {
-        const date = new Date(2024, 5, 10, 12, 1, 0)
+        const date = +new Date() + 60 * 1000
+        console.log(date)
 
         new schedule.scheduleJob(date, function () {
-            console.log('The world is going to end today.')
+            bot.sendMessage(msg.chat.id, 'The world is going to end today.')
         })
     }
 }
