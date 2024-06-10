@@ -19,31 +19,30 @@ export class CallbackService {
         }
         const calendar = JSON.parse(action)
         if (typeof calendar === 'object' && calendar.type === 'calendar') {
+            if (calendar.date === 0) {
+                return
+            }
             console.log(calendar)
-
+            const date = new Date(calendar.date)
             switch (calendar.action) {
                 case null:
                     return console.log(1)
                 case 'next-month':
                     return this.deferredService.getPage(
-                        calendar.date,
+                        date.setMonth(date.getMonth() + 1),
                         msg,
                         bot
                     )
                 case 'prev-month':
                     return this.deferredService.getPage(
-                        calendar.date,
+                        date.setMonth(date.getMonth() - 1),
                         msg,
                         bot
                     )
                 case 'select-year':
                     return this.deferredService.getYears(bot, msg)
                 case 'set-year':
-                    return this.deferredService.getPage(
-                        calendar.date,
-                        msg,
-                        bot
-                    )
+                    return this.deferredService.getPage(date, msg, bot)
                 default:
                     break
             }
