@@ -1,5 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import schedule = require('node-schedule')
 import telegram = require('node-telegram-bot-api')
 import {
     CallbackService,
@@ -30,6 +31,8 @@ export class BotService implements OnModuleInit {
         bot.on('message', async (msg) => {
             const chatId = msg.chat.id
             const text = msg.text
+            console.log(msg)
+
             switch (text) {
                 case '/start':
                     return this.greetingService.greeting(bot, chatId, msg)
@@ -41,8 +44,18 @@ export class BotService implements OnModuleInit {
                     break
             }
         })
+        bot.onText(/\/send/, (msg) => {
+            this.sendTime(1, msg, 'текст', bot)
+        })
         bot.on('callback_query', async (callbackQuery) => {
             await this.callbackService.callback(bot, callbackQuery)
+        })
+    }
+    async sendTime(time, msg, text, bot) {
+        const date = new Date(2024, 5, 10, 12, 1, 0)
+
+        new schedule.scheduleJob(date, function () {
+            console.log('The world is going to end today.')
         })
     }
 }
