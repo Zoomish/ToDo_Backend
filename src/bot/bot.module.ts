@@ -6,7 +6,7 @@ import {
     ProjectService,
     HelpService,
 } from './services'
-import { TaskModule } from 'src/projects/task.module'
+import { TaskModule } from 'src/task/task.module'
 import { UserModule } from 'src/user/user.module'
 
 @Module({
