@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common'
-import { ProjectsService } from 'src/projects/task.service'
+import { TaskService } from 'src/projects/task.service'
 
 @Injectable()
 export class ProjectService {
-    constructor(private readonly projectsService: ProjectsService) {}
+    constructor(private readonly TaskService: TaskService) {}
     async getProjects(bot, msg) {
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
-        const data = await this.projectsService.findAll()
+        const data = await this.TaskService.findAll()
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
         return await data.map(async (project) => {
             await bot.sendPhoto(msg.chat.id, `${project.image}`, {

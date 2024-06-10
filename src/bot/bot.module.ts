@@ -6,11 +6,11 @@ import {
     ProjectService,
     HelpService,
 } from './services'
-import { ProjectsModule } from 'src/projects/task.module'
+import { TaskModule } from 'src/projects/task.module'
 import { UserModule } from 'src/user/user.module'
 
 @Module({
-    imports: [ProjectsModule, UserModule],
+    imports: [TaskModule, UserModule],
     providers: [
         BotService,
         GreetingService,

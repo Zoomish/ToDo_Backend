@@ -6,7 +6,7 @@ import * as path from 'path'
 import { BotModule } from './bot/bot.module'
 import { configurator } from './configurator'
 import { Project } from './projects/model/task.model'
-import { ProjectsModule } from './projects/task.module'
+import { TaskModule } from './projects/task.module'
 import { UserModule } from './user/user.module'
 import { User } from './user/model/user.model'
 
@@ -40,7 +40,7 @@ import { User } from './user/model/user.model'
             synchronize: true,
         }),
         UserModule,
-        ProjectsModule,
+        TaskModule,
     ],
 })
 export class AppModule {}

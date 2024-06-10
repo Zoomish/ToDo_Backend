@@ -7,16 +7,16 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
-import { ProjectsService } from './task.service'
-import { CreateProjectDto } from './dto/create-task.dto'
+import { TaskService } from './task.service'
+import { CreateTaskDto } from './dto/create-task.dto'
 
 @Controller('projects')
-export class ProjectsController {
-    constructor(private readonly projectsService: ProjectsService) {}
+export class TaskController {
+    constructor(private readonly TaskService: TaskService) {}
 
     @Get()
     findAll() {
-        return this.projectsService.findAll()
+        return this.TaskService.findAll()
     }
 
     @Get('/AAA')
@@ -25,22 +25,22 @@ export class ProjectsController {
     }
 
     @Post()
-    create(@Body() dto: CreateProjectDto) {
-        return this.projectsService.create(dto)
+    create(@Body() dto: CreateTaskDto) {
+        return this.TaskService.create(dto)
     }
 
     @Get(':id')
     findOne(@Param('id') id: string) {
-        return this.projectsService.findOne(+id)
+        return this.TaskService.findOne(+id)
     }
 
     @Patch(':id')
     update(@Param('id') id: string) {
-        return this.projectsService.update(+id)
+        return this.TaskService.update(+id)
     }
 
     @Delete(':id')
     remove(@Param('id') id: string) {
-        return this.projectsService.remove(+id)
+        return this.TaskService.remove(+id)
     }
 }
