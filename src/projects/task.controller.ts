@@ -7,7 +7,7 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
-import { ProjectsService } from './projects.service'
+import { ProjectsService } from './task.service'
 import { CreateProjectDto } from './dto/create-project.dto'
 
 @Controller('projects')
