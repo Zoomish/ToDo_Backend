@@ -19,4 +19,14 @@ export class DeferredService {
             })
         })
     }
+
+    async getYears(bot, msg) {
+        bot.editMessageText(msg.chat.id, 'Выберите год', {
+            parse_mode: 'html',
+            reply_markup: JSON.stringify({
+                inline_keyboard: this.calendar.getYears(new Date()),
+                callback_data: 'date',
+            }),
+        })
+    }
 }
