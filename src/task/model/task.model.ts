@@ -36,16 +36,16 @@ export class Task extends Model<Task, ProjectCreationAttrs> {
     })
     id: number
 
-    @Column({ type: DataType.STRING(4048), unique: true, allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: false })
     title: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: true })
     description: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: true })
     image: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: true })
     tags: string
 
     @Column({
