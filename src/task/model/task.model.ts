@@ -29,7 +29,7 @@ enum Progress {
 @Table({ tableName: 'task' })
 export class Task extends Model<Task, ProjectCreationAttrs> {
     @Column({
-        type: DataType.INTEGER,
+        type: DataType.BIGINT,
         unique: true,
         primaryKey: true,
         autoIncrement: true,

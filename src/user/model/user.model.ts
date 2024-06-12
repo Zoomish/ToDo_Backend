@@ -11,7 +11,7 @@ interface UserCreationAttrs {
 @Table({ tableName: 'user' })
 export class User extends Model<User, UserCreationAttrs> {
     @Column({
-        type: DataType.INTEGER,
+        type: DataType.BIGINT,
         unique: true,
         primaryKey: true,
         autoIncrement: true,
