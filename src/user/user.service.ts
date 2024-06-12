@@ -7,10 +7,9 @@ import { User } from './model/user.model'
 export class UserService {
     constructor(@InjectModel(User) private userRepository: typeof User) {}
     async create(createUserDto: CreateUserDto) {
-        const project = await this.userRepository.create({
+        return await this.userRepository.create({
             ...createUserDto,
         })
-        return project
     }
 
     async findAll() {
