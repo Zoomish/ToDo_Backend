@@ -9,7 +9,7 @@ export class CreateTaskDto {
 
     readonly image: string
 
-    readonly repository: string
+    readonly time: Date
 
-    readonly live: string
+    readonly notification: Date
 }

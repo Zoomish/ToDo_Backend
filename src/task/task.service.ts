@@ -30,7 +30,8 @@ export class TaskService {
         return `This action updates a #id projects-service`
     }
 
-    remove(id: number) {
-        return `This action removes a #id projects-service`
+    async remove(id: number) {
+        const task = await this.projectRepository.findByPk(id)
+        return await task.destroy()
     }
 }
