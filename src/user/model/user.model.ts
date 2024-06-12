@@ -9,7 +9,7 @@ interface UserCreationAttrs {
     tg_id: number
 }
 @Entity()
-export class User extends Model<User, UserCreationAttrs> {
+export class User implements UserCreationAttrs {
     @PrimaryGeneratedColumn()
     id: number
 

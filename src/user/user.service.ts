@@ -10,7 +10,8 @@ export class UserService {
         @InjectRepository(User) private userRepository: Repository<User>
     ) {}
     async create(createUserDto: CreateUserDto) {
-        const project = this.userRepository.create(createUserDto)
+        let project = new User()
+        project = Object.assign(project, createUserDto)
         return await await this.userRepository.save(project)
     }
 
