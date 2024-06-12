@@ -6,9 +6,7 @@ async function bootstrap() {
     app.enableCors()
     function aaa() {
         setInterval(async () => {
-            await fetch(
-                'https://portfolio-backend-ur7a.onrender.com/projects/AAA'
-            )
+            await fetch('')
         }, 1000 * 60)
     }
     await app.listen(process.env.PORT, () => aaa())
