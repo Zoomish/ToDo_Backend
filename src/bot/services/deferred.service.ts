@@ -4,16 +4,50 @@ import { Calendar } from '@michpl/telegram-calendar'
 
 @Injectable()
 export class DeferredService {
+    calendar = new Calendar({
+        minDate: new Date(),
+    })
+    async pickTime(msg, bot) {
+        return bot.sendMessage(msg.chat.id, 'Выберите дату', {
+            parse_mode: 'html',
+            reply_markup: JSON.stringify({
+                inline_keyboard: this.calendar.getPage(new Date()),
+                callback_data: 'date',
+            }),
+        })
+    }
     async sendTime(time, msg, text, bot) {
-        const calendar = new Calendar()
         const date = +new Date() + time * 60 * 1000
-        new schedule.scheduleJob(date, function () {
+        new schedule.scheduleJob(date, () => {
             bot.sendMessage(msg.chat.id, text, {
                 parse_mode: 'html',
                 reply_markup: JSON.stringify({
-                    inline_keyboard: calendar.getPage(new Date()),
+                    inline_keyboard: this.calendar.getPage(new Date()),
+                    callback_data: 'date',
                 }),
             })
+        })
+    }
+
+    async getPage(time, msg, bot) {
+        bot.editMessageText('Выберите дату', {
+            chat_id: msg.chat.id,
+            message_id: msg.message_id,
+            reply_markup: JSON.stringify({
+                inline_keyboard: this.calendar.getPage(time),
+                callback_data: 'date',
+            }),
+        })
+    }
+
+    async getYears(bot, msg) {
+        bot.editMessageText('Выберите год', {
+            chat_id: msg.chat.id,
+            message_id: msg.message_id,
+            reply_markup: JSON.stringify({
+                inline_keyboard: this.calendar.getYears(new Date()),
+                callback_data: 'date',
+            }),
         })
     }
 }

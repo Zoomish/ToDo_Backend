@@ -1,4 +1,6 @@
 export class CreateTaskDto {
+    readonly user_id: number
+
     readonly title: string
 
     readonly description: string
@@ -7,7 +9,7 @@ export class CreateTaskDto {
 
     readonly image: string
 
-    readonly repository: string
+    readonly time: Date
 
-    readonly live: string
+    readonly notification: Date
 }

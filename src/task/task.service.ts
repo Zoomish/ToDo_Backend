@@ -15,12 +15,11 @@ export class TaskService {
     }
 
     async create(dto: CreateTaskDto) {
-        const user = await this.userService.findAll()
-        const project = await this.projectRepository.create({
+        const user = await this.userService.findByPk(dto.user_id)
+        return await this.projectRepository.create({
             ...dto,
             userId: user.id,
         })
-        return project
     }
 
     async findOne(id: number) {
@@ -31,7 +30,8 @@ export class TaskService {
         return `This action updates a #id projects-service`
     }
 
-    remove(id: number) {
-        return `This action removes a #id projects-service`
+    async remove(id: number) {
+        const task = await this.projectRepository.findByPk(id)
+        return await task.destroy()
     }
 }

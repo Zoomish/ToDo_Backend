@@ -46,7 +46,7 @@ export class BotService implements OnModuleInit {
             }
         })
         bot.onText(/\/send/, (msg) => {
-            this.deferredService.sendTime(1, msg, 'текст', bot)
+            this.deferredService.pickTime(msg, bot)
         })
         bot.on('callback_query', async (callbackQuery) => {
             await this.callbackService.callback(bot, callbackQuery)
