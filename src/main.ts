@@ -6,7 +6,7 @@ async function bootstrap() {
     app.enableCors()
     function aaa() {
         setInterval(async () => {
-            await fetch('')
+            await fetch('https://jsonplaceholder.typicode.com/posts')
         }, 1000 * 60)
     }
     await app.listen(process.env.PORT, () => aaa())
