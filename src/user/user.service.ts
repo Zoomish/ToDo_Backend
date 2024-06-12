@@ -39,8 +39,4 @@ export class UserService {
         user.password = dto.password ? dto.password : user.password
         return await user.save()
     }
-
-    remove(id: number) {
-        return `This action removes a #id user`
-    }
 }
