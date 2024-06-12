@@ -29,7 +29,7 @@ export class UserController {
         return this.userService.findByPk(+id)
     }
 
-    @Get(':tg_id')
+    @Get('tg/:tg_id')
     findByTg_id(@Param('tg_id') tg_id: string) {
         return this.userService.findByTg_id(+tg_id)
     }
