@@ -18,8 +18,17 @@ export class UserService {
         })
     }
 
-    findOne(id: number) {
-        return `This action returns a #id user`
+    async findByPk(id: number) {
+        return await this.userRepository.findByPk(id, {
+            include: { all: true },
+        })
+    }
+
+    async findByTg_id(tg_id: number) {
+        return await this.userRepository.findOne({
+            where: { tg_id },
+            include: { all: true },
+        })
     }
 
     update(id: number) {
