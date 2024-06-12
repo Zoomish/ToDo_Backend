@@ -3,6 +3,7 @@ import { Task } from './model/task.model'
 import { InjectModel } from '@nestjs/sequelize'
 import { CreateTaskDto } from './dto/create-task.dto'
 import { UserService } from 'src/user/user.service'
+import { UpdateTaskDto } from './dto/update-task.dto'
 
 @Injectable()
 export class TaskService {
@@ -26,7 +27,7 @@ export class TaskService {
         return await this.projectRepository.findByPk(id)
     }
 
-    update(id: number) {
+    update(id: number, dto: UpdateTaskDto) {
         return `This action updates a #id projects-service`
     }
 
