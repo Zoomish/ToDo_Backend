@@ -15,7 +15,7 @@ export class TaskService {
     }
 
     async create(dto: CreateTaskDto) {
-        const user = await this.userService.findAll()
+        const user = await this.userService.findByPk(dto.user_id)
         return await this.projectRepository.create({
             ...dto,
             userId: user.id,

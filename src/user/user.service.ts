@@ -13,7 +13,7 @@ export class UserService {
     }
 
     async findAll() {
-        return await this.userRepository.findOne({
+        return await this.userRepository.findAll({
             include: { all: true },
         })
     }
