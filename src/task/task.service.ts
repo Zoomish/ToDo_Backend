@@ -16,11 +16,10 @@ export class TaskService {
 
     async create(dto: CreateTaskDto) {
         const user = await this.userService.findAll()
-        const project = await this.projectRepository.create({
+        return await this.projectRepository.create({
             ...dto,
             userId: user.id,
         })
-        return project
     }
 
     async findOne(id: number) {
