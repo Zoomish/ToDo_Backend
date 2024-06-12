@@ -29,15 +29,7 @@ export class TaskService {
 
     async update(id: number, dto: UpdateTaskDto) {
         const task = await this.findOne(id)
-        task.title = dto.title ? dto.title : task.title
-        task.description = dto.description ? dto.description : task.description
-        task.tags = dto.tags ? dto.tags : task.tags
-        task.image = dto.image ? dto.image : task.image
-        task.time = dto.time ? dto.time : task.time
-        task.notification = dto.notification
-            ? dto.notification
-            : task.notification
-        return await task.save()
+        return await Object.assign(task, { ...dto }).save()
     }
 
     async remove(id: number) {

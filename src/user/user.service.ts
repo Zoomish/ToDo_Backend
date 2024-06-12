@@ -36,9 +36,6 @@ export class UserService {
 
     async update(id: number, dto: UpdateUserDto) {
         const user = await this.findByPk(id)
-        user.nickname = dto.nickname ? dto.nickname : user.nickname
-        user.email = dto.email ? dto.email : user.email
-        user.password = dto.password ? dto.password : user.password
-        return await user.save()
+        return await Object.assign(user, { ...dto }).save()
     }
 }
