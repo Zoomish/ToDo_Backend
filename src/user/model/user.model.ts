@@ -4,7 +4,7 @@ import { Task } from 'src/task/model/task.model'
 interface UserCreationAttrs {
     nickname: string
     tasks: Task[]
-    login: string
+    email: string
     password: string
     tg_id: number
 }
@@ -22,7 +22,7 @@ export class User extends Model<User, UserCreationAttrs> {
     nickname: string
 
     @Column({ type: DataType.STRING(4048), allowNull: false })
-    login: string
+    email: string
 
     @Column({ type: DataType.STRING(4048), allowNull: false })
     password: string
