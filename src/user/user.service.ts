@@ -32,7 +32,8 @@ export class UserService {
     }
 
     update(id: number) {
-        return `This action updates a #id user`
+        const user = this.findByPk(id)
+        return user
     }
 
     remove(id: number) {
