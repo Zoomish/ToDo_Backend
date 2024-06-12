@@ -27,7 +27,7 @@ export class User extends Model<User, UserCreationAttrs> {
     @Column({ type: DataType.STRING(4048), allowNull: false })
     password: string
 
-    @Column({ type: DataType.BIGINT, allowNull: false })
+    @Column({ type: DataType.BIGINT, allowNull: true })
     tg_id: number
 
     @HasMany(() => Task)
