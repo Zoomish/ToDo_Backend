@@ -1,4 +1,4 @@
-import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript'
+import { Column, PrimaryGeneratedColumn, Entity, OneToMany } from 'typeorm'
 import { Task } from 'src/task/model/task.model'
 
 interface UserCreationAttrs {
@@ -8,28 +8,23 @@ interface UserCreationAttrs {
     password: string
     tg_id: number
 }
-@Table({ tableName: 'user' })
+@Entity()
 export class User extends Model<User, UserCreationAttrs> {
-    @Column({
-        type: DataType.INTEGER,
-        unique: true,
-        primaryKey: true,
-        autoIncrement: true,
-    })
+    @PrimaryGeneratedColumn()
     id: number
 
-    @Column({ type: DataType.STRING(4048), unique: true, allowNull: false })
+    @Column({ type: 'varchar', unique: true, nullable: false })
     nickname: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: 'varchar', nullable: false })
     login: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: 'varchar', nullable: false })
     password: string
 
-    @Column({ type: DataType.BIGINT, allowNull: false })
+    @Column({ type: 'bigint', nullable: false })
     tg_id: number
 
-    @HasMany(() => Task)
+    @OneToMany(() => Task, (task) => task.user)
     tasks: Task[]
 }

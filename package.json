@@ -21,7 +21,7 @@
     "dependencies": {
         "@michpl/telegram-calendar": "^1.1.0",
         "@nestjs/common": "^10.0.0",
-        "@nestjs/config": "^3.2.0",
+        "@nestjs/config": "^3.2.2",
         "@nestjs/core": "^10.0.0",
         "@nestjs/jwt": "^10.2.0",
         "@nestjs/platform-express": "^10.0.0",
@@ -37,7 +37,7 @@
         "express-basic-auth": "^1.2.1",
         "node-schedule": "^2.1.1",
         "node-telegram-bot-api": "^0.65.1",
-        "pg": "^8.11.3",
+        "pg": "^8.12.0",
         "pg-hstore": "^2.3.4",
         "reflect-metadata": "^0.2.0",
         "rxjs": "^7.8.1",
@@ -45,6 +45,7 @@
         "sequelize-typescript": "^2.1.6",
         "swagger-ui-express": "^5.0.0",
         "telegram-bot-api": "^2.0.1",
+        "typeorm": "^0.3.20",
         "uuid": "^9.0.1"
     },
     "devDependencies": {
