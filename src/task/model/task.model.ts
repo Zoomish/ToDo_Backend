@@ -48,7 +48,11 @@ export class Task extends Model<Task, ProjectCreationAttrs> {
     @Column({ type: DataType.STRING(4048), allowNull: false })
     tags: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({
+        type: DataType.STRING(4048),
+        allowNull: false,
+        defaultValue: Progress['NotStarted'],
+    })
     progress: Progress
 
     @Column({ type: DataType.DATE, allowNull: true })
