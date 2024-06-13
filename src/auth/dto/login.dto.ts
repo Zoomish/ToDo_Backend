@@ -5,7 +5,7 @@ export class LoginDto {
     @ApiProperty({ example: 'test@gmail.com', description: 'Почтовый адрес' })
     @IsString({ message: 'Должно быть строкой' })
     @IsEmail({}, { message: 'Некорректный email' })
-    readonly private_nickname: string
+    readonly email: string
 
     @ApiProperty({ example: '12345', description: 'Пароль пользователя' })
     @IsString({ message: 'Должно быть строкой' })

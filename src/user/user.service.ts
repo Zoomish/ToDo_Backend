@@ -18,11 +18,19 @@ export class UserService {
     async findAll() {
         return await this.userRepository.findAll({
             include: { all: true },
+            attributes: { exclude: ['email', 'password'] },
         })
     }
 
     async findByPk(id: number) {
         return await this.userRepository.findByPk(id, {
+            include: { all: true },
+        })
+    }
+
+    async findByLogin(email: string) {
+        return await this.userRepository.findOne({
+            where: { email },
             include: { all: true },
         })
     }
