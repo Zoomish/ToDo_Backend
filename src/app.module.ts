@@ -23,7 +23,7 @@ import { JwtModule } from '@nestjs/jwt'
         }),
         JwtModule.register({
             global: true,
-            signOptions: { expiresIn: '60s' },
+            signOptions: { expiresIn: '60m' },
         }),
         ServeStaticModule.forRoot({
             rootPath: path.resolve(__dirname, 'static'),
