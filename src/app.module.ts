@@ -10,7 +10,6 @@ import { TaskModule } from './task/task.module'
 import { UserModule } from './user/user.module'
 import { User } from './user/model/user.model'
 import { AuthModule } from './auth/auth.module'
-import { JwtModule } from '@nestjs/jwt'
 
 @Module({
     imports: [
@@ -20,10 +19,6 @@ import { JwtModule } from '@nestjs/jwt'
             envFilePath: `.${process.env.NODE_ENV}.env`,
             isGlobal: true,
             load: [configurator],
-        }),
-        JwtModule.register({
-            global: true,
-            signOptions: { expiresIn: '60m' },
         }),
         ServeStaticModule.forRoot({
             rootPath: path.resolve(__dirname, 'static'),
