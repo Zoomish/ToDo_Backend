@@ -15,7 +15,7 @@ import { CreateTaskDto } from './dto/create-task.dto'
 export class TaskController {
     constructor(private readonly taskService: TaskService) {}
 
-    @Get()
+    @Get(':id')
     findAll() {
         return this.taskService.findAll()
     }
@@ -30,17 +30,17 @@ export class TaskController {
         return this.taskService.create(dto)
     }
 
-    @Get(':id')
+    @Get('/one:id')
     findOne(@Param('id') id: string) {
         return this.taskService.findOne(+id)
     }
 
-    @Patch(':id')
+    @Patch('/one:id')
     update(@Param('id') id: string, @Body() dto: UpdateTaskDto) {
         return this.taskService.update(+id, dto)
     }
 
-    @Delete(':id')
+    @Delete('/one:id')
     remove(@Param('id') id: string) {
         return this.taskService.remove(+id)
     }
