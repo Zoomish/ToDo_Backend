@@ -16,8 +16,8 @@ export class TaskController {
     constructor(private readonly taskService: TaskService) {}
 
     @Get(':id')
-    findAll() {
-        return this.taskService.findAll()
+    findAll(@Param('id') id: string) {
+        return this.taskService.findByUserId(+id)
     }
 
     @Get('/AAA')

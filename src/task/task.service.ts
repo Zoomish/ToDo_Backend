@@ -11,8 +11,9 @@ export class TaskService {
         @InjectModel(Task) private projectRepository: typeof Task,
         private userService: UserService
     ) {}
-    async findAll() {
-        return await this.projectRepository.findAll()
+    async findByUserId(id: number) {
+        const user = await this.userService.findByPk(id)
+        return user.tasks
     }
 
     async create(dto: CreateTaskDto) {
