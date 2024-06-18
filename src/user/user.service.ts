@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { CreateUserDto } from './dto/create-user.dto'
 import { InjectModel } from '@nestjs/sequelize'
+import * as bcrypt from 'bcryptjs'
 import { User } from './model/user.model'
 import { UpdateUserDto } from './dto/update-user.dto copy'
 
@@ -10,18 +11,29 @@ export class UserService {
     async create(createUserDto: CreateUserDto) {
         return await this.userRepository.create({
             ...createUserDto,
+            password: await bcrypt.hash(createUserDto.password, 10),
         })
     }
 
     async findAll() {
         return await this.userRepository.findAll({
             include: { all: true },
+            attributes: { exclude: ['email', 'password'] },
         })
     }
 
     async findByPk(id: number) {
         return await this.userRepository.findByPk(id, {
             include: { all: true },
+            attributes: { exclude: ['email', 'password'] },
+        })
+    }
+
+    async findByLogin(email: string) {
+        return await this.userRepository.findOne({
+            where: { email },
+            include: { all: true },
+            attributes: { exclude: ['email', 'password'] },
         })
     }
 
@@ -29,18 +41,12 @@ export class UserService {
         return await this.userRepository.findOne({
             where: { tg_id },
             include: { all: true },
+            attributes: { exclude: ['email', 'password'] },
         })
     }
 
     async update(id: number, dto: UpdateUserDto) {
         const user = await this.findByPk(id)
-        user.nickname = dto.nickname ? dto.nickname : user.nickname
-        user.email = dto.email ? dto.email : user.email
-        user.password = dto.password ? dto.password : user.password
-        return await user.save()
-    }
-
-    remove(id: number) {
-        return `This action removes a #id user`
+        return await Object.assign(user, { ...dto }).save()
     }
 }

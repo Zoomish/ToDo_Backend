@@ -3,6 +3,7 @@ import { Task } from './model/task.model'
 import { InjectModel } from '@nestjs/sequelize'
 import { CreateTaskDto } from './dto/create-task.dto'
 import { UserService } from 'src/user/user.service'
+import { UpdateTaskDto } from './dto/update-task.dto'
 
 @Injectable()
 export class TaskService {
@@ -10,8 +11,9 @@ export class TaskService {
         @InjectModel(Task) private projectRepository: typeof Task,
         private userService: UserService
     ) {}
-    async findAll() {
-        return await this.projectRepository.findAll()
+    async findByUserId(id: number) {
+        const user = await this.userService.findByPk(id)
+        return user.tasks
     }
 
     async create(dto: CreateTaskDto) {
@@ -26,8 +28,9 @@ export class TaskService {
         return await this.projectRepository.findByPk(id)
     }
 
-    update(id: number) {
-        return `This action updates a #id projects-service`
+    async update(id: number, dto: UpdateTaskDto) {
+        const task = await this.findOne(id)
+        return await Object.assign(task, { ...dto }).save()
     }
 
     async remove(id: number) {
