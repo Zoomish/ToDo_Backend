@@ -33,7 +33,6 @@ export class UserService {
         return await this.userRepository.findOne({
             where: { email },
             include: { all: true },
-            attributes: { exclude: ['email', 'password'] },
         })
     }
 
