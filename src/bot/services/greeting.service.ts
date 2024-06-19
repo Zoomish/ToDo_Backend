@@ -20,7 +20,7 @@ export class GreetingService {
                     keyboard: [
                         [
                             {
-                                text: 'Заполнить форму',
+                                text: 'Войти в аккаунт',
                                 web_app: {
                                     url:
                                         process.env.URL + '/admin/autorization',
