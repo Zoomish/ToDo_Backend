@@ -26,6 +26,13 @@ export class GreetingService {
                                         process.env.URL + '/admin/autorization',
                                 },
                             },
+                            {
+                                text: 'Зарегестрироваться',
+                                web_app: {
+                                    url:
+                                        process.env.URL + '/admin/autorization',
+                                },
+                            },
                         ],
                     ],
                 },
