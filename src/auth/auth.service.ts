@@ -4,6 +4,7 @@ import * as bcrypt from 'bcryptjs'
 import { LoginDto } from './dto/login.dto'
 import { User } from 'src/user/model/user.model'
 import { UserService } from 'src/user/user.service'
+import { CreateUserDto } from 'src/user/dto/create-user.dto'
 
 @Injectable()
 export class AuthService {
@@ -15,6 +16,11 @@ export class AuthService {
     async login(dto: LoginDto) {
         const user = await this.validateUser(dto)
         Logger.log('User was logged in successfully')
+        return this.generateToken(user)
+    }
+
+    async register(dto: CreateUserDto) {
+        const user = await this.userService.create(dto)
         return this.generateToken(user)
     }
 
