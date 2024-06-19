@@ -17,8 +17,27 @@ export class GreetingService {
                             },
                         ],
                     ],
+                    keyboard: [
+                        [
+                            {
+                                text: 'Заполнить форму',
+                                web_app: {
+                                    url:
+                                        process.env.URL + '/admin/autorization',
+                                },
+                            },
+                        ],
+                    ],
                 },
             }
         )
+        if (msg?.web_app_data?.data) {
+            try {
+                const data = JSON.parse(msg?.web_app_data?.data)
+                console.log(data)
+            } catch (e) {
+                console.log(e)
+            }
+        }
     }
 }
