@@ -22,8 +22,7 @@ export class GreetingService {
                             {
                                 text: 'Войти в аккаунт',
                                 web_app: {
-                                    url:
-                                        process.env.URL + '/admin/autorization',
+                                    url: process.env.URL + '/admin/login',
                                 },
                             },
                             {
