@@ -17,6 +17,9 @@ export class CallbackService {
             default:
                 break
         }
+        if (action !== 'object') {
+            return false
+        }
         const calendar = JSON.parse(action)
         if (typeof calendar === 'object' && calendar.type === 'calendar') {
             if (calendar.date === 0) {

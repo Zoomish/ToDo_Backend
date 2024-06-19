@@ -20,27 +20,9 @@ export class GreetingService {
                             msg.from.id === 1432248791
                                 ? {
                                       text: 'Получить всех пользователей',
-                                      callback_data: 'get_all',
+                                      callback_data: 'getAll',
                                   }
                                 : '',
-                        ],
-                    ],
-                    keyboard: [
-                        [
-                            {
-                                text: 'Войти в аккаунт',
-                                web_app: {
-                                    url:
-                                        process.env.URL + '/admin/autorization',
-                                },
-                            },
-                            {
-                                text: 'Зарегестрироваться',
-                                web_app: {
-                                    url:
-                                        process.env.URL + '/admin/registration',
-                                },
-                            },
                         ],
                     ],
                 },
