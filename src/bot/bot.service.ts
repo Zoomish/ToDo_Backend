@@ -7,6 +7,7 @@ import {
     ProjectService,
     HelpService,
     DeferredService,
+    AgreeTaskService,
 } from './services'
 
 @Injectable()
@@ -17,6 +18,7 @@ export class BotService implements OnModuleInit {
         private readonly configService: ConfigService,
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService,
+        private readonly agreeTaskService: AgreeTaskService,
         private readonly deferredService: DeferredService
     ) {}
 
@@ -32,8 +34,6 @@ export class BotService implements OnModuleInit {
         bot.on('message', async (msg) => {
             const chatId = msg.chat.id
             const text = msg.text
-            console.log(msg)
-
             switch (text) {
                 case '/start':
                     return this.greetingService.greeting(bot, chatId, msg)
@@ -43,6 +43,14 @@ export class BotService implements OnModuleInit {
                     return this.helpService.help(bot, chatId)
                 default:
                     break
+            }
+            if (msg?.web_app_data?.data) {
+                try {
+                    const data = JSON.parse(msg?.web_app_data?.data)
+                    this.agreeTaskService.agree(bot, chatId, data)
+                } catch (e) {
+                    console.log(e)
+                }
             }
         })
         bot.onText(/\/send/, (msg) => {

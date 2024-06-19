@@ -6,6 +6,7 @@ import {
     ProjectService,
     HelpService,
     DeferredService,
+    AgreeTaskService,
 } from './services'
 import { TaskModule } from 'src/task/task.module'
 import { UserModule } from 'src/user/user.module'
@@ -16,6 +17,7 @@ import { UserModule } from 'src/user/user.module'
         BotService,
         GreetingService,
         CallbackService,
+        AgreeTaskService,
         ProjectService,
         HelpService,
         DeferredService,
