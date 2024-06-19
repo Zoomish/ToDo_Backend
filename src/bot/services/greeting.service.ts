@@ -31,13 +31,5 @@ export class GreetingService {
                 },
             }
         )
-        if (msg?.web_app_data?.data) {
-            try {
-                const data = JSON.parse(msg?.web_app_data?.data)
-                console.log(data)
-            } catch (e) {
-                console.log(e)
-            }
-        }
     }
 }
