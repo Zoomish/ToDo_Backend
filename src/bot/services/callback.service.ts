@@ -42,7 +42,11 @@ export class CallbackService {
                 case 'select-year':
                     return this.deferredService.getYears(bot, msg)
                 case 'set-year':
-                    return this.deferredService.getPage(date, msg, bot)
+                    return this.deferredService.getPage(
+                        date.setMonth(0),
+                        msg,
+                        bot
+                    )
                 default:
                     break
             }
