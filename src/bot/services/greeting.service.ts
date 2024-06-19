@@ -22,14 +22,15 @@ export class GreetingService {
                             {
                                 text: 'Войти в аккаунт',
                                 web_app: {
-                                    url: process.env.URL + '/admin/login',
+                                    url:
+                                        process.env.URL + '/admin/autorization',
                                 },
                             },
                             {
                                 text: 'Зарегестрироваться',
                                 web_app: {
                                     url:
-                                        process.env.URL + '/admin/autorization',
+                                        process.env.URL + '/admin/registration',
                                 },
                             },
                         ],
