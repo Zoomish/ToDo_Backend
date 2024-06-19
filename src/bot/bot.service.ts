@@ -7,7 +7,7 @@ import {
     ProjectService,
     HelpService,
     DeferredService,
-    AgreeTaskService,
+    WebAppService,
 } from './services'
 
 @Injectable()
@@ -18,7 +18,7 @@ export class BotService implements OnModuleInit {
         private readonly configService: ConfigService,
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService,
-        private readonly agreeTaskService: AgreeTaskService,
+        private readonly webAppService: WebAppService,
         private readonly deferredService: DeferredService
     ) {}
 
@@ -47,7 +47,7 @@ export class BotService implements OnModuleInit {
             if (msg?.web_app_data?.data) {
                 try {
                     const data = JSON.parse(msg?.web_app_data?.data)
-                    this.agreeTaskService.agree(bot, chatId, data)
+                    this.webAppService.agree(bot, chatId, data)
                 } catch (e) {
                     console.log(e)
                 }
