@@ -22,10 +22,7 @@ export class WebUserService {
     async signIn(bot, chatId, data, userTgId) {
         const token = await this.authService.login(data)
         if (!token) {
-            return await bot.sendMessage(
-                chatId,
-                `Неправильная почта или пароль`
-            )
+            return await bot.sendMessage(chatId, `Некоректные данные`)
         }
         await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`, {
             reply_markup: {
