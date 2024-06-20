@@ -9,14 +9,14 @@ export class WebAppService {
         const operation = data.operation
         switch (operation) {
             case 'autorization':
-                return this.webUserService.addTdIdUser(
+                return this.webUserService.signIn(
                     bot,
                     chatId,
                     data.email,
                     msg.from.id
                 )
             case 'registration':
-                return this.webUserService.addTdIdUser(
+                return this.webUserService.signUp(
                     bot,
                     chatId,
                     data.email,
