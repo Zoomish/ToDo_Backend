@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { ProjectService } from './project.service'
-import { DeferredService } from './deferred.service'
+import { ProjectService } from './task/project.service'
+import { DeferredService } from './calendar/deferred.service'
 
 @Injectable()
 export class CallbackService {
