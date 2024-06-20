@@ -14,6 +14,6 @@ export class WebUserService {
                 `Вы успешно привязали телеграм к аккаунту`
             )
         }
-        await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`)
+        return await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`)
     }
 }
