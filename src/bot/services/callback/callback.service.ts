@@ -5,7 +5,7 @@ import { DeferredService } from '../calendar/deferred.service'
 @Injectable()
 export class CallbackService {
     constructor(
-        private readonly projectService: TasksService,
+        private readonly taskService: TasksService,
         private readonly deferredService: DeferredService
     ) {}
     async callback(bot, callbackQuery) {
@@ -13,7 +13,7 @@ export class CallbackService {
         const msg = callbackQuery.message
         switch (action) {
             case 'projects':
-                return await this.projectService.getProjects(bot, msg)
+                return await this.taskService.getProjects(bot, msg)
             default:
                 break
         }
