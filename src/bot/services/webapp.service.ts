@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
-export class AgreeTaskService {
+export class WebAppService {
     constructor() {}
     async agree(bot, chatId, msg) {
         console.log(msg)
