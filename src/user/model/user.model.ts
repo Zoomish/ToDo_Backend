@@ -18,10 +18,10 @@ export class User extends Model<User, UserCreationAttrs> {
     })
     id: number
 
-    @Column({ type: DataType.STRING(4048), unique: true, allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: false })
     nickname: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: DataType.STRING(4048), unique: true, allowNull: false })
     email: string
 
     @Column({ type: DataType.STRING(4048), allowNull: false })
