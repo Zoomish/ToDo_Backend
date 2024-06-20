@@ -6,7 +6,7 @@ export class WebUserService {
     constructor(private readonly userService: UserService) {}
     async addTdIdUser(bot, chatId, data, userTgId) {
         const user = await this.userService.findByLogin(data.email)
-        if (user.tg_id !== null) {
+        if (user.tg_id === null) {
             user.tg_id = userTgId
             user.save()
         }
