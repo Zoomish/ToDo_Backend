@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { UserService } from '../../../user/user.service'
 import { AuthService } from 'src/auth/auth.service'
 
@@ -20,7 +20,10 @@ export class WebUserService {
         }
     }
     async signIn(bot, chatId, data, userTgId) {
-        await this.authService.login(data)
+        const token = await this.authService.login(data)
+        if (!token) {
+            throw new UnauthorizedException()
+        }
         await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`, {
             reply_markup: {
                 hide_keyboard: true,
@@ -29,7 +32,10 @@ export class WebUserService {
         return await this.addTdIdUser(bot, chatId, data.email, userTgId)
     }
     async signUp(bot, chatId, data, userTgId) {
-        await this.authService.register(data)
+        const token = await this.authService.register(data)
+        if (!token) {
+            throw new UnauthorizedException()
+        }
         await bot.sendMessage(chatId, `Вы успешно создали аккаунт!`, {
             reply_markup: {
                 hide_keyboard: true,
