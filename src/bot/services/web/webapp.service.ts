@@ -4,7 +4,8 @@ import { Injectable } from '@nestjs/common'
 export class WebAppService {
     constructor() {}
     async agree(bot, chatId, msg) {
-        console.log(msg)
+        const operation = msg.operation
+        console.log(operation)
         await bot.sendMessage(chatId, JSON.stringify(msg))
     }
 }
