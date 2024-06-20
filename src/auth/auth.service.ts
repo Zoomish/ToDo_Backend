@@ -24,7 +24,9 @@ export class AuthService {
     }
 
     async register(dto: CreateUserDto) {
-        return this.generateToken(await this.userService.create(dto))
+        try {
+            return this.generateToken(await this.userService.create(dto))
+        } catch (error) {}
     }
 
     async validateToken() {
