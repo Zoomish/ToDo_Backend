@@ -29,7 +29,23 @@ export class WebUserService {
                 hide_keyboard: true,
             },
         })
-        return await this.addTdIdUser(bot, chatId, data.email, userTgId)
+        await this.addTdIdUser(bot, chatId, data.email, userTgId)
+        return await bot.sendMessage(
+            chatId,
+            `Отлично! Теперь можно начинать работу`,
+            {
+                reply_markup: {
+                    inline_keyboard: [
+                        [
+                            {
+                                text: 'Что я могу делать?',
+                                callback_data: 'all_commands',
+                            },
+                        ],
+                    ],
+                },
+            }
+        )
     }
     async signUp(bot, chatId, data, userTgId) {
         await this.authService.register(data)
