@@ -35,15 +35,7 @@ export class WebUserService {
         return await this.addTdIdUser(bot, chatId, data.email, userTgId)
     }
     async signUp(bot, chatId, data, userTgId) {
-        const token = await this.authService.register(data)
-        if (!token) {
-            return await bot.sendMessage(chatId, `Некоректные данные`)
-        }
-        await bot.sendMessage(chatId, `Вы успешно создали аккаунт!`, {
-            reply_markup: {
-                hide_keyboard: true,
-            },
-        })
-        return await this.addTdIdUser(bot, chatId, data.email, userTgId)
+        await this.authService.register(data)
+        return await this.signIn(bot, chatId, data, userTgId)
     }
 }
