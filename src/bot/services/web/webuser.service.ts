@@ -4,8 +4,8 @@ import { UserService } from '../../../user/user.service'
 @Injectable()
 export class WebUserService {
     constructor(private readonly userService: UserService) {}
-    async addTdIdUser(bot, chatId, data, userTgId) {
-        const user = await this.userService.findByLogin(data)
+    async addTdIdUser(bot, chatId, email, userTgId) {
+        const user = await this.userService.findByLogin(email)
         if (user.tg_id === null) {
             user.tg_id = userTgId
             user.save()
