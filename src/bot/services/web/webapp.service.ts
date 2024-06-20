@@ -9,9 +9,19 @@ export class WebAppService {
         const operation = data.operation
         switch (operation) {
             case 'autorization':
-                return this.webUserService.addTdIdUser(bot, chatId, msg)
+                return this.webUserService.addTdIdUser(
+                    bot,
+                    chatId,
+                    data,
+                    msg.from.id
+                )
             case 'registration':
-                return this.webUserService.addTdIdUser(bot, chatId, msg)
+                return this.webUserService.addTdIdUser(
+                    bot,
+                    chatId,
+                    data,
+                    msg.from.id
+                )
             default:
                 break
         }

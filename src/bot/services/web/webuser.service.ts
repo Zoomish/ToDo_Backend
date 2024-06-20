@@ -4,9 +4,11 @@ import { UserService } from '../../../user/user.service'
 @Injectable()
 export class WebUserService {
     constructor(private readonly userService: UserService) {}
-    async addTdIdUser(bot, chatId, msg) {
-        const operation = msg.operation
-        console.log(operation)
-        await bot.sendMessage(chatId, JSON.stringify(msg))
+    async addTdIdUser(bot, chatId, data, userTgId) {
+        const user = await this.userService.findByLogin(data.email)
+        user.tg_id = userTgId
+        user.save()
+        await bot.sendMessage(chatId, `Вы успешно зарегистрировались!`)
+        await bot.sendMessage(chatId, JSON.stringify(user))
     }
 }
