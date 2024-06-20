@@ -4,8 +4,7 @@ import { UserService } from '../../../user/user.service'
 @Injectable()
 export class WebUserService {
     constructor(private readonly userService: UserService) {}
-    private async addTdIdUser(bot, chatId, email, userTgId) {
-        const user = await this.userService.findByLogin(email)
+    private async addTdIdUser(bot, chatId, user, userTgId) {
         if (user.tg_id === null) {
             user.tg_id = userTgId
             user.save()
@@ -16,19 +15,21 @@ export class WebUserService {
         }
     }
     async signIn(bot, chatId, email, userTgId) {
+        const user = await this.userService.findByLogin(email)
         await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`, {
             reply_markup: {
                 hide_keyboard: true,
             },
         })
-        return await this.addTdIdUser(bot, chatId, email, userTgId)
+        return await this.addTdIdUser(bot, chatId, user, userTgId)
     }
     async signUp(bot, chatId, email, userTgId) {
+        const user = await this.userService.findByLogin(email)
         await bot.sendMessage(chatId, `Вы успешно создали аккаунт!`, {
             reply_markup: {
                 hide_keyboard: true,
             },
         })
-        return await this.addTdIdUser(bot, chatId, email, userTgId)
+        return await this.addTdIdUser(bot, chatId, user, userTgId)
     }
 }
