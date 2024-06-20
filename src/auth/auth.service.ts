@@ -24,10 +24,7 @@ export class AuthService {
     }
 
     async register(dto: CreateUserDto) {
-        try {
-            const user = await this.userService.create(dto)
-            return this.generateToken(user)
-        } catch (error) {}
+        return this.generateToken(await this.userService.create(dto))
     }
 
     async validateToken() {
