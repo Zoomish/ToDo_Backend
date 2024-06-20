@@ -14,14 +14,19 @@ export class AuthService {
     ) {}
 
     async login(dto: LoginDto) {
-        const user = await this.validateUser(dto)
-        Logger.log('User was logged in successfully')
-        return this.generateToken(user)
+        try {
+            const user = await this.validateUser(dto)
+            Logger.log('User was logged in successfully')
+            return this.generateToken(user)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async register(dto: CreateUserDto) {
-        const user = await this.userService.create(dto)
-        return this.generateToken(user)
+        try {
+            return this.generateToken(await this.userService.create(dto))
+        } catch (error) {}
     }
 
     async validateToken() {

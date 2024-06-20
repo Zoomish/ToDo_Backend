@@ -4,7 +4,7 @@ import telegram = require('node-telegram-bot-api')
 import {
     CallbackService,
     GreetingService,
-    ProjectService,
+    TasksService,
     HelpService,
     DeferredService,
     WebAppService,
@@ -14,7 +14,7 @@ import {
 export class BotService implements OnModuleInit {
     constructor(
         private readonly callbackService: CallbackService,
-        private readonly projectService: ProjectService,
+        private readonly projectService: TasksService,
         private readonly configService: ConfigService,
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService,
@@ -46,8 +46,7 @@ export class BotService implements OnModuleInit {
             }
             if (msg?.web_app_data?.data) {
                 try {
-                    const data = JSON.parse(msg?.web_app_data?.data)
-                    this.webAppService.agree(bot, chatId, data)
+                    this.webAppService.agree(bot, chatId, msg)
                 } catch (e) {
                     console.log(e)
                 }

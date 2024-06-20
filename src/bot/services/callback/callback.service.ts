@@ -1,19 +1,21 @@
 import { Injectable } from '@nestjs/common'
-import { ProjectService } from './project.service'
-import { DeferredService } from './deferred.service'
+import { TasksService } from '../task/task.service'
+import { DeferredService } from '../calendar/deferred.service'
+import { HelpService } from '../help/help.service'
 
 @Injectable()
 export class CallbackService {
     constructor(
-        private readonly projectService: ProjectService,
+        private readonly taskService: TasksService,
+        private readonly helpService: HelpService,
         private readonly deferredService: DeferredService
     ) {}
     async callback(bot, callbackQuery) {
         const action = callbackQuery.data
         const msg = callbackQuery.message
         switch (action) {
-            case 'projects':
-                return await this.projectService.getProjects(bot, msg)
+            case 'all_commands':
+                return await this.helpService.help(bot, msg.chat.id)
             default:
                 break
         }

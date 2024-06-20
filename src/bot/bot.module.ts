@@ -3,22 +3,25 @@ import { BotService } from './bot.service'
 import {
     GreetingService,
     CallbackService,
-    ProjectService,
+    TasksService,
     HelpService,
     DeferredService,
     WebAppService,
+    WebUserService,
 } from './services'
 import { TaskModule } from 'src/task/task.module'
 import { UserModule } from 'src/user/user.module'
+import { AuthModule } from 'src/auth/auth.module'
 
 @Module({
-    imports: [TaskModule, UserModule],
+    imports: [TaskModule, UserModule, AuthModule],
     providers: [
         BotService,
         GreetingService,
         CallbackService,
         WebAppService,
-        ProjectService,
+        WebUserService,
+        TasksService,
         HelpService,
         DeferredService,
     ],
