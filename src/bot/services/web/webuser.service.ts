@@ -16,11 +16,19 @@ export class WebUserService {
         }
     }
     async signIn(bot, chatId, email, userTgId) {
-        await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`)
+        await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`, {
+            reply_markup: {
+                hide_keyboard: true,
+            },
+        })
         return await this.addTdIdUser(bot, chatId, email, userTgId)
     }
     async signUp(bot, chatId, email, userTgId) {
-        await bot.sendMessage(chatId, `Вы успешно создали аккаунт!`)
+        await bot.sendMessage(chatId, `Вы успешно создали аккаунт!`, {
+            reply_markup: {
+                hide_keyboard: true,
+            },
+        })
         return await this.addTdIdUser(bot, chatId, email, userTgId)
     }
 }
