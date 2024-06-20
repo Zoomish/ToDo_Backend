@@ -12,14 +12,14 @@ export class WebAppService {
                 return this.webUserService.addTdIdUser(
                     bot,
                     chatId,
-                    data,
+                    data.email,
                     msg.from.id
                 )
             case 'registration':
                 return this.webUserService.addTdIdUser(
                     bot,
                     chatId,
-                    data,
+                    data.email,
                     msg.from.id
                 )
             default:
