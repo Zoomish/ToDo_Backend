@@ -46,8 +46,7 @@ export class BotService implements OnModuleInit {
             }
             if (msg?.web_app_data?.data) {
                 try {
-                    const data = JSON.parse(msg?.web_app_data?.data)
-                    this.webAppService.agree(bot, chatId, data)
+                    this.webAppService.agree(bot, chatId, msg)
                 } catch (e) {
                     console.log(e)
                 }

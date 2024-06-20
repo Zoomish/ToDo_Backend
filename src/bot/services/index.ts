@@ -1,4 +1,4 @@
-export * from './user/greeting.service'
+export * from './greeting/greeting.service'
 export * from './callback/callback.service'
 export * from './task/project.service'
 export * from './help/help.service'
