@@ -5,14 +5,14 @@ export class HelpService {
     async help(bot, chatId) {
         await bot.sendMessage(
             chatId,
-            `/task - для просмотра информации обо мне\n/projects - для просмотра моих проектов`,
+            `/tasks - Посмотреть весь список задач\n/projects - для просмотра моих проектов`,
             {
                 reply_markup: {
                     inline_keyboard: [
                         [
                             {
-                                text: 'Информация обо мне',
-                                callback_data: 'about',
+                                text: 'Посмотреть весь список задач',
+                                callback_data: 'tasks',
                             },
                             {
                                 text: 'Мои проекты',
