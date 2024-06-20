@@ -9,8 +9,11 @@ export class WebUserService {
         if (user.tg_id === null) {
             user.tg_id = userTgId
             user.save()
+            await bot.sendMessage(
+                chatId,
+                `Вы успешно привязали телеграм к аккаунту`
+            )
         }
         await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`)
-        await bot.sendMessage(chatId, JSON.stringify(user))
     }
 }
