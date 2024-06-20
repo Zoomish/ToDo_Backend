@@ -1,6 +1,6 @@
 export * from './greeting/greeting.service'
 export * from './callback/callback.service'
-export * from './task/project.service'
+export * from './task/task.service'
 export * from './help/help.service'
 export * from './calendar/deferred.service'
 export * from './web/'

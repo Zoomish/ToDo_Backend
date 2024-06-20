@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
-import { ProjectService } from '../task/project.service'
+import { TasksService } from '../task/task.service'
 import { DeferredService } from '../calendar/deferred.service'
 
 @Injectable()
 export class CallbackService {
     constructor(
-        private readonly projectService: ProjectService,
+        private readonly projectService: TasksService,
         private readonly deferredService: DeferredService
     ) {}
     async callback(bot, callbackQuery) {

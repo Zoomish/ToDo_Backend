@@ -4,7 +4,7 @@ import telegram = require('node-telegram-bot-api')
 import {
     CallbackService,
     GreetingService,
-    ProjectService,
+    TasksService,
     HelpService,
     DeferredService,
     WebAppService,
@@ -14,7 +14,7 @@ import {
 export class BotService implements OnModuleInit {
     constructor(
         private readonly callbackService: CallbackService,
-        private readonly projectService: ProjectService,
+        private readonly projectService: TasksService,
         private readonly configService: ConfigService,
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService,
