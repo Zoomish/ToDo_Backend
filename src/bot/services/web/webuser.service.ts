@@ -35,7 +35,6 @@ export class WebUserService {
         return await this.addTdIdUser(bot, chatId, data.email, userTgId)
     }
     async signUp(bot, chatId, data, userTgId) {
-        console.log(data)
         const token = await this.authService.register(data)
         if (!token) {
             return await bot.sendMessage(chatId, `Некоректные данные`)
