@@ -27,9 +27,7 @@ export class AuthService {
         try {
             const user = await this.userService.create(dto)
             return this.generateToken(user)
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
 
     async validateToken() {
