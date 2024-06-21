@@ -33,7 +33,9 @@ export class TasksService {
                             [
                                 {
                                     text: 'Информация обо мне',
-                                    web_app: process.env.URL,
+                                    web_app: {
+                                        url: process.env.URL,
+                                    },
                                 },
                             ],
                         ],
