@@ -28,6 +28,26 @@ export class TasksService {
                 {
                     parse_mode: 'HTML',
                     protect_content: true,
+                    reply_markup: {
+                        inline_keyboard: [
+                            [
+                                {
+                                    text: 'Изменить задачу',
+                                    web_app: {
+                                        url: process.env.URL,
+                                    },
+                                },
+                            ],
+                            [
+                                {
+                                    text: 'Удалить задачу',
+                                    web_app: {
+                                        url: process.env.URL,
+                                    },
+                                },
+                            ],
+                        ],
+                    },
                 }
             )
         })
