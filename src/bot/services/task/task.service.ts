@@ -9,7 +9,9 @@ export class TasksService {
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
         return await bot.sendMessage(
             msg.chat.id,
-            JSON.stringify(this.taskService.findByUserTgId(msg?.from?.id))
+            JSON.stringify(
+                (await this.taskService.findByUserTgId(msg?.chat?.id)) || 'No'
+            )
         )
     }
 }
