@@ -34,6 +34,12 @@ export class WebUserService {
                                 url: process.env.URL + '/tasks',
                             },
                         },
+                        {
+                            text: 'Добавить задачу',
+                            web_app: {
+                                url: process.env.URL + '/add/task',
+                            },
+                        },
                     ],
                     [
                         {
