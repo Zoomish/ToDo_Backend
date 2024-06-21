@@ -5,11 +5,12 @@ import { TaskService } from 'src/task/task.service'
 export class TasksService {
     constructor(private readonly taskService: TaskService) {}
     async getTasks(bot, msg) {
+        console.log(msg)
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
-        bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
+        await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
         return await bot.sendMessage(
             msg.chat.id,
-            JSON.stringify(this.taskService.findByUserTgId(msg.from.id))
+            JSON.stringify(this.taskService.findByUserTgId(msg?.from?.id))
         )
     }
 }
