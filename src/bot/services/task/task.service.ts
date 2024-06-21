@@ -32,7 +32,7 @@ export class TasksService {
                         inline_keyboard: [
                             [
                                 {
-                                    text: 'Обновить задачу',
+                                    text: 'Изменить задачу',
                                     web_app: {
                                         url: process.env.URL,
                                     },
