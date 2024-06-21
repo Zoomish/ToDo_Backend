@@ -1,12 +1,35 @@
 import { Injectable } from '@nestjs/common'
+import { Task } from 'src/task/model/task.model'
 import { TaskService } from 'src/task/task.service'
 
 @Injectable()
 export class TasksService {
     constructor(private readonly taskService: TaskService) {}
-    async getProjects(bot, msg) {
+    async getTasks(bot, msg) {
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
-        return await 0
+        const tasks = await this.taskService.findByUserTgId(msg?.chat?.id)
+        return await tasks.map((task: Task) => {
+            return bot.sendMessage(
+                msg.chat.id,
+                `Заголовок: ${task.title}\nОписание: ${task.description ? task.description : 'Нет'}\nДедлайн: ${
+                    task.time
+                        ? new Date(task.time).toLocaleString(undefined, {
+                              weekday: 'long',
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                              hour: 'numeric',
+                              minute: 'numeric',
+                          })
+                        : 'Нет'
+                }\nСтатус: ${task.progress}
+                `,
+                {
+                    parse_mode: 'HTML',
+                    protect_content: true,
+                }
+            )
+        })
     }
 }

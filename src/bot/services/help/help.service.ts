@@ -7,6 +7,7 @@ export class HelpService {
             chatId,
             `/tasks - Посмотреть весь список задач\n/projects - для просмотра моих проектов`,
             {
+                protect_content: true,
                 reply_markup: {
                     inline_keyboard: [
                         [
@@ -14,6 +15,8 @@ export class HelpService {
                                 text: 'Посмотреть весь список задач',
                                 callback_data: 'tasks',
                             },
+                        ],
+                        [
                             {
                                 text: 'Мои проекты',
                                 callback_data: 'projects',

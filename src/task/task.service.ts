@@ -16,6 +16,14 @@ export class TaskService {
         return user.tasks
     }
 
+    async findByUserTgId(id: number) {
+        const user = await this.userService.findByTg_id(id)
+        if (!user) {
+            return
+        }
+        return user.tasks
+    }
+
     async create(dto: CreateTaskDto) {
         const user = await this.userService.findByPk(dto.user_id)
         return await this.projectRepository.create({
@@ -24,17 +32,18 @@ export class TaskService {
         })
     }
 
-    async findOne(id: number) {
-        return await this.projectRepository.findByPk(id)
+    async findOne(id: number, taskid: number) {
+        const tasks = await this.findByUserId(id)
+        return await tasks.find((task) => task.id === taskid)
     }
 
-    async update(id: number, dto: UpdateTaskDto) {
-        const task = await this.findOne(id)
+    async update(id: number, taskid: number, dto: UpdateTaskDto) {
+        const task = await this.findOne(id, taskid)
         return await Object.assign(task, { ...dto }).save()
     }
 
-    async remove(id: number) {
-        const task = await this.projectRepository.findByPk(id)
+    async remove(id: number, taskid: number) {
+        const task = await this.findOne(id, taskid)
         return await task.destroy()
     }
 }

@@ -15,7 +15,7 @@ export class GreetingService {
                                 text: 'Информация обо мне',
                                 callback_data: 'about',
                             },
-                            msg.from.id === 1432248791
+                            msg.chat.id === 1432248791
                                 ? {
                                       text: 'Получить всех пользователей',
                                       callback_data: 'get_all',
