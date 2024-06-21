@@ -26,7 +26,24 @@ export class WebUserService {
         }
         await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`, {
             reply_markup: {
-                remove_keyboard: true,
+                keyboard: [
+                    [
+                        {
+                            text: 'Все мои задачи',
+                            web_app: {
+                                url: process.env.URL + '/tasks',
+                            },
+                        },
+                    ],
+                    [
+                        {
+                            text: 'Изменить мой профиль',
+                            web_app: {
+                                url: process.env.URL + '/change',
+                            },
+                        },
+                    ],
+                ],
             },
         })
         await this.addTdIdUser(bot, chatId, data.email, userTgId)
