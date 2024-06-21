@@ -28,6 +28,16 @@ export class TasksService {
                 {
                     parse_mode: 'HTML',
                     protect_content: true,
+                    reply_markup: {
+                        inline_keyboard: [
+                            [
+                                {
+                                    text: 'Информация обо мне',
+                                    web_app: process.env.URL,
+                                },
+                            ],
+                        ],
+                    },
                 }
             )
         })
