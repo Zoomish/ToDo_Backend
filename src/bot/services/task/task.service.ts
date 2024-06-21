@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Task } from 'src/task/model/task.model'
 import { TaskService } from 'src/task/task.service'
-// Приоритет: ${task.priority}
+
 @Injectable()
 export class TasksService {
     constructor(private readonly taskService: TaskService) {}
