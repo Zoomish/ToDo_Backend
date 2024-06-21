@@ -48,6 +48,10 @@ export class WebUserService {
                                 url: process.env.URL + '/change',
                             },
                         },
+                        {
+                            text: 'Показать мой профиль',
+                            callback_data: 'getme',
+                        },
                     ],
                 ],
             },
