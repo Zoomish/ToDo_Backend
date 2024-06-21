@@ -7,11 +7,9 @@ export class TasksService {
     async getTasks(bot, msg) {
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
-        return await bot.sendMessage(
-            msg.chat.id,
-            JSON.stringify(
-                (await this.taskService.findByUserTgId(msg?.chat?.id)) || 'No'
-            )
-        )
+        const tasks = await this.taskService.findByUserTgId(msg?.chat?.id)
+        return await tasks.map((task) => {
+            return bot.sendMessage(msg.chat.id, JSON.stringify(task))
+        })
     }
 }
