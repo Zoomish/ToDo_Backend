@@ -14,11 +14,13 @@ export class TasksService {
                 msg.chat.id,
                 `Заголовок: ${task.title}\nОписание: ${task.description}\nДедлайн: ${
                     task.time
-                        ? new Date(task.time).toLocaleDateString(undefined, {
+                        ? new Date(task.time).toLocaleString(undefined, {
                               weekday: 'long',
                               year: 'numeric',
                               month: 'long',
                               day: 'numeric',
+                              hour: 'numeric',
+                              minute: 'numeric',
                           })
                         : 'Нет'
                 }\nСтатус: ${task.progress}
