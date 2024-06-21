@@ -26,7 +26,7 @@ export class WebUserService {
         }
         await bot.sendMessage(chatId, `Вы успешно вошли в аккаунт!`, {
             reply_markup: {
-                hide_keyboard: true,
+                remove_keyboard: true,
             },
         })
         await this.addTdIdUser(bot, chatId, data.email, userTgId)
