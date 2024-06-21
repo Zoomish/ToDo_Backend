@@ -14,6 +14,8 @@ export class HelpService {
                                 text: 'Посмотреть весь список задач',
                                 callback_data: 'tasks',
                             },
+                        ],
+                        [
                             {
                                 text: 'Мои проекты',
                                 callback_data: 'projects',
