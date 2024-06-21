@@ -16,6 +16,8 @@ export class CallbackService {
         switch (action) {
             case 'all_commands':
                 return await this.helpService.help(bot, msg.chat.id)
+            case 'tasks':
+                return await this.taskService.getTasks(bot, msg)
             default:
                 break
         }

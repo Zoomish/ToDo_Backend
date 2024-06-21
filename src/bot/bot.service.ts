@@ -14,7 +14,7 @@ import {
 export class BotService implements OnModuleInit {
     constructor(
         private readonly callbackService: CallbackService,
-        private readonly projectService: TasksService,
+        private readonly taskService: TasksService,
         private readonly configService: ConfigService,
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService,
@@ -37,8 +37,8 @@ export class BotService implements OnModuleInit {
             switch (text) {
                 case '/start':
                     return this.greetingService.greeting(bot, chatId, msg)
-                case '/projects':
-                    return await this.projectService.getProjects(bot, msg)
+                case '/tasks':
+                    return await this.taskService.getTasks(bot, msg)
                 case '/help':
                     return this.helpService.help(bot, chatId)
                 default:
