@@ -18,6 +18,9 @@ export class TaskService {
 
     async findByUserTgId(id: number) {
         const user = await this.userService.findByTg_id(id)
+        if (!user) {
+            return
+        }
         return user.tasks
     }
 
