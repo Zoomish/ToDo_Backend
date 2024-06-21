@@ -25,8 +25,8 @@ export class TaskService {
     }
 
     async findOne(id: number, taskid: number) {
-        const user = await this.userService.findByPk(id)
-        return await user.tasks.find((task) => task.id === taskid)
+        const tasks = await this.findByUserId(id)
+        return await tasks.find((task) => task.id === taskid)
     }
 
     async update(id: number, taskid: number, dto: UpdateTaskDto) {
