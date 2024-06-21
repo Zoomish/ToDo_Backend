@@ -24,17 +24,18 @@ export class TaskService {
         })
     }
 
-    async findOne(id: number) {
-        return await this.projectRepository.findByPk(id)
+    async findOne(id: number, taskid: number) {
+        const user = await this.userService.findByPk(id)
+        return await user.tasks.find((task) => task.id === taskid)
     }
 
-    async update(id: number, dto: UpdateTaskDto) {
-        const task = await this.findOne(id)
+    async update(id: number, taskid: number, dto: UpdateTaskDto) {
+        const task = await this.findOne(id, taskid)
         return await Object.assign(task, { ...dto }).save()
     }
 
-    async remove(id: number) {
-        const task = await this.projectRepository.findByPk(id)
+    async remove(id: number, taskid: number) {
+        const task = await this.findOne(id, taskid)
         return await task.destroy()
     }
 }

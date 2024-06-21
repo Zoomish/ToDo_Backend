@@ -19,7 +19,6 @@ export class TaskController {
     findAll(@Param('id') id: string) {
         return this.taskService.findByUserId(+id)
     }
-
     @Get('/AAA')
     AAAA() {
         return {}
@@ -30,18 +29,22 @@ export class TaskController {
         return this.taskService.create(dto)
     }
 
-    @Get('/one:id')
-    findOne(@Param('id') id: string) {
-        return this.taskService.findOne(+id)
+    @Get(':id/:taskid')
+    findOne(@Param('id') id: string, @Param('taskid') taskid: string) {
+        return this.taskService.findOne(+id, +taskid)
     }
 
-    @Patch('/one:id')
-    update(@Param('id') id: string, @Body() dto: UpdateTaskDto) {
-        return this.taskService.update(+id, dto)
+    @Patch(':id/:taskid')
+    update(
+        @Param('id') id: string,
+        @Param('taskid') taskid: string,
+        @Body() dto: UpdateTaskDto
+    ) {
+        return this.taskService.update(+id, +taskid, dto)
     }
 
-    @Delete('/one:id')
-    remove(@Param('id') id: string) {
-        return this.taskService.remove(+id)
+    @Delete(':id/:taskid')
+    remove(@Param('id') id: string, @Param('taskid') taskid: string) {
+        return this.taskService.remove(+id, +taskid)
     }
 }
