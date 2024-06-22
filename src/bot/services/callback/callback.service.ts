@@ -2,12 +2,14 @@ import { Injectable } from '@nestjs/common'
 import { TasksService } from '../task/task.service'
 import { DeferredService } from '../calendar/deferred.service'
 import { HelpService } from '../help/help.service'
+import { UsersService } from '../user/user.service'
 
 @Injectable()
 export class CallbackService {
     constructor(
         private readonly taskService: TasksService,
         private readonly helpService: HelpService,
+        private readonly userService: UsersService,
         private readonly deferredService: DeferredService
     ) {}
     async callback(bot, callbackQuery) {
@@ -18,6 +20,8 @@ export class CallbackService {
                 return await this.helpService.help(bot, msg.chat.id)
             case 'tasks':
                 return await this.taskService.getTasks(bot, msg)
+            case 'getme':
+                return await this.userService.getUser(bot, msg)
             default:
                 break
         }

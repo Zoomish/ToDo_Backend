@@ -8,6 +8,7 @@ import {
     DeferredService,
     WebAppService,
     WebUserService,
+    UsersService,
 } from './services'
 import { TaskModule } from 'src/task/task.module'
 import { UserModule } from 'src/user/user.module'
@@ -19,6 +20,7 @@ import { AuthModule } from 'src/auth/auth.module'
         BotService,
         GreetingService,
         CallbackService,
+        UsersService,
         WebAppService,
         WebUserService,
         TasksService,
