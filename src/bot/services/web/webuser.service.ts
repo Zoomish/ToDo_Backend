@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common'
 import { UserService } from '../../../user/user.service'
 import { AuthService } from 'src/auth/auth.service'
+import { GreetingService } from '../greeting/greeting.service'
 
 @Injectable()
 export class WebUserService {
     constructor(
         private readonly userService: UserService,
-        private readonly authService: AuthService
+        private readonly authService: AuthService,
+        private readonly greetingService: GreetingService
     ) {}
     private async addTdIdUser(bot, chatId, email, userTgId) {
         const user = await this.userService.findByLogin(email)
@@ -79,5 +81,9 @@ export class WebUserService {
     async signUp(bot, chatId, data, userTgId) {
         await this.authService.register(data)
         return await this.signIn(bot, chatId, data, userTgId)
+    }
+
+    async badToken(bot, chatId, msg) {
+        return await this.greetingService.greeting(bot, chatId, msg)
     }
 }
