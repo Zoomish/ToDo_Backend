@@ -7,6 +7,9 @@ export class UsersService {
     async getUser(bot, msg) {
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
-        return 0
+        return await bot.sendMessage(
+            msg.chat.id,
+            JSON.stringify(await this.userService.findByTg_id(msg.chat.id))
+        )
     }
 }

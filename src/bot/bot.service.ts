@@ -8,6 +8,7 @@ import {
     HelpService,
     DeferredService,
     WebAppService,
+    UsersService,
 } from './services'
 
 @Injectable()
@@ -19,6 +20,7 @@ export class BotService implements OnModuleInit {
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService,
         private readonly webAppService: WebAppService,
+        private readonly userService: UsersService,
         private readonly deferredService: DeferredService
     ) {}
 
@@ -39,6 +41,8 @@ export class BotService implements OnModuleInit {
                     return this.greetingService.greeting(bot, chatId, msg)
                 case '/tasks':
                     return await this.taskService.getTasks(bot, msg)
+                case '/getMe':
+                    return await this.userService.getUser(bot, msg)
                 case '/help':
                     return this.helpService.help(bot, chatId)
                 default:
