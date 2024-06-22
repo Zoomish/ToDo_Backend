@@ -50,7 +50,9 @@ export class WebUserService {
                         },
                         {
                             text: 'Показать мой профиль',
-                            callback_data: 'getme',
+                            web_app: {
+                                url: process.env.URL + '/me',
+                            },
                         },
                     ],
                 ],
