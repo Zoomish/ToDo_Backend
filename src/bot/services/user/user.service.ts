@@ -7,9 +7,14 @@ export class UsersService {
     async getUser(bot, msg) {
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
+        const user = await this.userService.findByTg_id(msg.chat.id)
         return await bot.sendMessage(
             msg.chat.id,
-            JSON.stringify(await this.userService.findByTg_id(msg.chat.id))
+            `<b>Никнейм</b> ${user.nickname}\n<b>Почта</b> ${user.email}`,
+            {
+                parse_mode: 'HTML',
+                protect_content: true,
+            }
         )
     }
 }
