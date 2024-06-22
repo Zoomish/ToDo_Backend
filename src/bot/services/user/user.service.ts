@@ -10,7 +10,7 @@ export class UsersService {
         const user = await this.userService.findByTg_id(msg.chat.id)
         return await bot.sendMessage(
             msg.chat.id,
-            `<b>Ваш профиль</b>\n\n<b>Никнейм:</b> ${user.nickname}\n<b>Почта:</b> ${user.email}`,
+            `<b>Ваш профиль</b>\n\n<b>Никнейм:</b> ${user.nickname}\n<b>Почта:</b> ${user.email}\n<b>Количество задач:</b> ${user.tasks.length}`,
             {
                 parse_mode: 'HTML',
                 protect_content: true,
