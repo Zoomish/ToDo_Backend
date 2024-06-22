@@ -24,7 +24,7 @@ export class WebAppService {
                     msg.from.id
                 )
             case 'badtoken':
-                return this.webUserService.badToken(bot, chatId, msg)
+                return this.webUserService.badToken(bot, chatId)
             default:
                 break
         }

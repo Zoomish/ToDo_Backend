@@ -1,14 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import { UserService } from '../../../user/user.service'
 import { AuthService } from 'src/auth/auth.service'
-import { GreetingService } from '../greeting/greeting.service'
 
 @Injectable()
 export class WebUserService {
     constructor(
         private readonly userService: UserService,
-        private readonly authService: AuthService,
-        private readonly greetingService: GreetingService
+        private readonly authService: AuthService
     ) {}
     private async addTdIdUser(bot, chatId, email, userTgId) {
         const user = await this.userService.findByLogin(email)
@@ -83,11 +81,25 @@ export class WebUserService {
         return await this.signIn(bot, chatId, data, userTgId)
     }
 
-    async badToken(bot, chatId, msg) {
-        await bot.sendMessage(
+    async badToken(bot, chatId) {
+        return await bot.sendMessage(
             chatId,
-            `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`
+            `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`,
+            {
+                reply_markup: {
+                    keyboard: [
+                        [
+                            {
+                                text: 'Войти в аккаунт',
+                                web_app: {
+                                    url:
+                                        process.env.URL + '/admin/autorization',
+                                },
+                            },
+                        ],
+                    ],
+                },
+            }
         )
-        return await this.greetingService.greeting(bot, chatId, msg)
     }
 }
