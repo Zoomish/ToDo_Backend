@@ -15,15 +15,11 @@ export class CallbackService {
     async callback(bot, callbackQuery) {
         const action = callbackQuery.data
         const msg = callbackQuery.message
-        console.log(action)
-
         switch (action) {
             case 'all_commands':
                 return await this.helpService.help(bot, msg.chat.id)
             case 'tasks':
                 return await this.taskService.getTasks(bot, msg)
-            case 'getme':
-                return await this.userService.getUser(bot, msg)
             default:
                 break
         }
