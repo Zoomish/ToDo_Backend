@@ -84,6 +84,10 @@ export class WebUserService {
     }
 
     async badToken(bot, chatId, msg) {
+        await bot.sendMessage(
+            chatId,
+            `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`
+        )
         return await this.greetingService.greeting(bot, chatId, msg)
     }
 }
