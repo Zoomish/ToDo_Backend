@@ -14,6 +14,16 @@ export class UsersService {
             {
                 parse_mode: 'HTML',
                 protect_content: true,
+                reply_markup: {
+                    inline_keyboard: [
+                        [
+                            {
+                                text: 'Посмотреть весь список задач',
+                                callback_data: 'tasks',
+                            },
+                        ],
+                    ],
+                },
             }
         )
     }
