@@ -12,7 +12,7 @@ export class TasksService {
         return await tasks.map((task: Task) => {
             return bot.sendMessage(
                 msg.chat.id,
-                `Заголовок: ${task.title}\nОписание: ${task.description ? task.description : 'Нет'}\nДедлайн: ${
+                `<b>Заголовок:</b> ${task.title}\n<b>Описание:</b> ${task.description ? task.description : 'Нет'}\n<b>Дедлайн:</b> ${
                     task.time
                         ? new Date(task.time).toLocaleString(undefined, {
                               weekday: 'long',
@@ -23,7 +23,7 @@ export class TasksService {
                               minute: 'numeric',
                           })
                         : 'Нет'
-                }\nСтатус: ${task.progress}
+                }\n<b>Статус:</b> ${task.progress}
                 `,
                 {
                     parse_mode: 'HTML',

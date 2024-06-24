@@ -5,9 +5,12 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule)
     app.enableCors()
     function aaa() {
-        setInterval(async () => {
-            await fetch('https://jsonplaceholder.typicode.com/posts')
-        }, 1000 * 60)
+        setInterval(
+            async () => {
+                await fetch('https://todo-backend-pwzq.onrender.com/AAA')
+            },
+            1000 * 60 * 14 + 1000 * 30
+        )
     }
     await app.listen(process.env.PORT, () => aaa())
 }

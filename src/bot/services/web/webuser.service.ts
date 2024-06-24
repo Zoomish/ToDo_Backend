@@ -50,7 +50,9 @@ export class WebUserService {
                         },
                         {
                             text: 'Показать мой профиль',
-                            callback_data: 'getme',
+                            web_app: {
+                                url: process.env.URL + '/me',
+                            },
                         },
                     ],
                 ],
@@ -77,5 +79,27 @@ export class WebUserService {
     async signUp(bot, chatId, data, userTgId) {
         await this.authService.register(data)
         return await this.signIn(bot, chatId, data, userTgId)
+    }
+
+    async badToken(bot, chatId) {
+        return await bot.sendMessage(
+            chatId,
+            `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`,
+            {
+                reply_markup: {
+                    keyboard: [
+                        [
+                            {
+                                text: 'Войти в аккаунт',
+                                web_app: {
+                                    url:
+                                        process.env.URL + '/admin/autorization',
+                                },
+                            },
+                        ],
+                    ],
+                },
+            }
+        )
     }
 }
