@@ -7,7 +7,9 @@ async function bootstrap() {
     function aaa() {
         setInterval(
             async () => {
-                await fetch('https://todo-backend-pwzq.onrender.com/AAA')
+                await fetch(
+                    'https://todo-backend-pwzq.onrender.com/task/get/AAA'
+                )
             },
             1000 * 60 * 14 + 1000 * 30
         )

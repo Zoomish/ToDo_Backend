@@ -19,9 +19,11 @@ export class TaskController {
     findAll(@Param('id') id: string) {
         return this.taskService.findByUserId(+id)
     }
-    @Get('/AAA')
+    @Get('/get/AAA')
     AAAA() {
-        return {}
+        return {
+            mesage: 'AAAAAAAAAAAAAA',
+        }
     }
 
     @Post()
