@@ -36,6 +36,7 @@ export class TasksService {
                                     web_app: {
                                         url: process.env.URL,
                                     },
+                                    callback_data: '',
                                 },
                             ],
                             [
@@ -44,6 +45,7 @@ export class TasksService {
                                     web_app: {
                                         url: process.env.URL,
                                     },
+                                    callback_data: '',
                                 },
                             ],
                         ],
