@@ -1,4 +1,4 @@
-export class CreateTaskDto {
+export class UpdateTaskDto {
     readonly user_id: number
 
     readonly title: string

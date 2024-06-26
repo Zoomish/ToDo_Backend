@@ -13,37 +13,53 @@ interface ProjectCreationAttrs {
     description: string
     image: string
     tags: string
-    repository: string
-    live: string
+    progress: string
+    time: Date
+    notification: Date
     userId: number
+}
+
+enum Progress {
+    Done = 'Выполнено',
+    InProgress = 'В процессе',
+    NotStarted = 'Не начато',
+    Deferred = 'Приостановлено',
+    Overdue = 'Просрочено',
 }
 @Table({ tableName: 'task' })
 export class Task extends Model<Task, ProjectCreationAttrs> {
     @Column({
-        type: DataType.INTEGER,
+        type: DataType.BIGINT,
         unique: true,
         primaryKey: true,
         autoIncrement: true,
     })
     id: number
 
-    @Column({ type: DataType.STRING(4048), unique: true, allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: false })
     title: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: true })
     description: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: true })
     image: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
+    @Column({ type: DataType.STRING(4048), allowNull: true })
     tags: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
-    repository: string
+    @Column({
+        type: DataType.STRING(4048),
+        allowNull: false,
+        defaultValue: Progress['NotStarted'],
+    })
+    progress: Progress
 
-    @Column({ type: DataType.STRING(4048), allowNull: false })
-    live: string
+    @Column({ type: DataType.DATE, allowNull: true })
+    time: Date
+
+    @Column({ type: DataType.DATE, allowNull: true })
+    notification: Date
 
     @ForeignKey(() => User)
     @Column({ type: DataType.INTEGER })

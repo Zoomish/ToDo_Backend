@@ -9,6 +9,7 @@ import { Task } from './task/model/task.model'
 import { TaskModule } from './task/task.module'
 import { UserModule } from './user/user.module'
 import { User } from './user/model/user.model'
+import { AuthModule } from './auth/auth.module'
 
 @Module({
     imports: [
@@ -41,6 +42,7 @@ import { User } from './user/model/user.model'
         }),
         UserModule,
         TaskModule,
+        AuthModule,
     ],
 })
 export class AppModule {}
