@@ -30,7 +30,7 @@ export class GreetingService {
             chatId,
             `Для начала, зарегистрируйтесь или войдите в уже существующий аккаунт`,
             {
-                reply_markup: {
+                reply_markup: JSON.stringify({
                     keyboard: [
                         [
                             {
@@ -51,7 +51,7 @@ export class GreetingService {
                             },
                         ],
                     ],
-                },
+                }),
             }
         )
     }

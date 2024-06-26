@@ -86,7 +86,7 @@ export class WebUserService {
             chatId,
             `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`,
             {
-                reply_markup: {
+                reply_markup: JSON.stringify({
                     keyboard: [
                         [
                             {
@@ -98,7 +98,7 @@ export class WebUserService {
                             },
                         ],
                     ],
-                },
+                }),
             }
         )
     }
