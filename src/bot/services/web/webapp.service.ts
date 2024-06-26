@@ -8,6 +8,8 @@ export class WebAppService {
         const data = JSON.parse(msg?.web_app_data?.data)
         const operation = data.operation
         delete data.operation
+        console.log(operation)
+
         switch (operation) {
             case 'autorization':
                 return this.webUserService.signIn(
