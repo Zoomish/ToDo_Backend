@@ -5,6 +5,7 @@ import {
     CallbackService,
     TasksService,
     HelpService,
+    DeferredService,
     WebAppService,
     WebUserService,
     UsersService,
@@ -24,6 +25,7 @@ import { AuthModule } from 'src/auth/auth.module'
         WebUserService,
         TasksService,
         HelpService,
+        DeferredService,
     ],
     exports: [],
 })
