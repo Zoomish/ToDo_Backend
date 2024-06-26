@@ -15,12 +15,6 @@ export class GreetingService {
                                 text: 'Информация обо мне',
                                 callback_data: 'about',
                             },
-                            msg.chat.id === 1432248791
-                                ? {
-                                      text: 'Получить всех пользователей',
-                                      callback_data: 'get_all',
-                                  }
-                                : '',
                         ],
                     ],
                 }),
