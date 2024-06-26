@@ -28,7 +28,7 @@ export class TasksService {
                 {
                     parse_mode: 'HTML',
                     protect_content: true,
-                    reply_markup: {
+                    reply_markup: JSON.stringify({
                         inline_keyboard: [
                             [
                                 {
@@ -47,7 +47,7 @@ export class TasksService {
                                 },
                             ],
                         ],
-                    },
+                    }),
                 }
             )
         })
