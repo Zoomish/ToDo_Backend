@@ -82,6 +82,7 @@ export class WebUserService {
     }
 
     async badToken(bot, chatId) {
+        await bot.deleteMessages(chatId)
         return await bot.sendMessage(
             chatId,
             `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`,
