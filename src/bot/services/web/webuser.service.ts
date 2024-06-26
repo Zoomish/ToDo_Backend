@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { UserService } from '../../../user/user.service'
 import { AuthService } from 'src/auth/auth.service'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const schedule = require('node-schedule')
 
 @Injectable()
 export class WebUserService {
@@ -59,6 +61,9 @@ export class WebUserService {
             },
         })
         await this.addTdIdUser(bot, chatId, data.email, userTgId)
+        schedule.scheduleJob(+new Date() + 1000 * 60, async () => {
+            await this.badToken(bot, chatId)
+        })
         return await bot.sendMessage(
             chatId,
             `Отлично! Теперь можно начинать работу`,
