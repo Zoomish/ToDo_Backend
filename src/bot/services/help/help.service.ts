@@ -8,7 +8,7 @@ export class HelpService {
             `/tasks - Посмотреть весь список задач\n/projects - для просмотра моих проектов`,
             {
                 protect_content: true,
-                reply_markup: {
+                reply_markup: JSON.stringify({
                     inline_keyboard: [
                         [
                             {
@@ -23,7 +23,7 @@ export class HelpService {
                             },
                         ],
                     ],
-                },
+                }),
             }
         )
     }
