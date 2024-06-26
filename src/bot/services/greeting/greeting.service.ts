@@ -8,7 +8,7 @@ export class GreetingService {
             chatId,
             `Здравствуйте, ${msg?.chat?.first_name}! Это мой бот(@Zoomish). Он был написан для вашего удобства в планировании своих дел\n\n/help - для просмотра команд`,
             {
-                reply_markup: {
+                reply_markup: JSON.stringify({
                     inline_keyboard: [
                         [
                             {
@@ -23,7 +23,7 @@ export class GreetingService {
                                 : '',
                         ],
                     ],
-                },
+                }),
             }
         )
         await bot.sendMessage(
