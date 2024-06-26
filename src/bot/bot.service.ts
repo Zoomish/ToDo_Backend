@@ -6,7 +6,6 @@ import {
     GreetingService,
     TasksService,
     HelpService,
-    DeferredService,
     WebAppService,
     UsersService,
 } from './services'
@@ -20,8 +19,7 @@ export class BotService implements OnModuleInit {
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService,
         private readonly webAppService: WebAppService,
-        private readonly userService: UsersService,
-        private readonly deferredService: DeferredService
+        private readonly userService: UsersService
     ) {}
 
     async onModuleInit() {
@@ -55,9 +53,6 @@ export class BotService implements OnModuleInit {
                     console.log(e)
                 }
             }
-        })
-        bot.onText(/\/send/, (msg) => {
-            this.deferredService.pickTime(msg, bot)
         })
         bot.on('callback_query', async (callbackQuery) => {
             await this.callbackService.callback(bot, callbackQuery)
