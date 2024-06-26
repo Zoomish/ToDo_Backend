@@ -34,18 +34,12 @@ export class TasksService {
                                 {
                                     text: 'Изменить задачу',
                                     callback_data: 'z',
-                                    web_app: {
-                                        url: process.env.URL,
-                                    },
                                 },
                             ],
                             [
                                 {
                                     text: 'Удалить задачу',
                                     callback_data: 'z',
-                                    web_app: {
-                                        url: process.env.URL,
-                                    },
                                 },
                             ],
                         ],
