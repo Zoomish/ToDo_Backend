@@ -6,7 +6,6 @@ import {
     GreetingService,
     ProjectService,
     HelpService,
-    DeferredService,
 } from './services'
 
 @Injectable()
@@ -17,7 +16,6 @@ export class BotService implements OnModuleInit {
         private readonly configService: ConfigService,
         private readonly helpService: HelpService,
         private readonly greetingService: GreetingService,
-        private readonly deferredService: DeferredService
     ) {}
 
     async onModuleInit() {
@@ -44,9 +42,6 @@ export class BotService implements OnModuleInit {
                 default:
                     break
             }
-        })
-        bot.onText(/\/send/, (msg) => {
-            this.deferredService.sendTime(0.01, msg, 'текст', bot)
         })
         bot.on('callback_query', async (callbackQuery) => {
             await this.callbackService.callback(bot, callbackQuery)
