@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { UserService } from '../../../user/user.service'
 import { AuthService } from 'src/auth/auth.service'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const schedule = require('node-schedule')
 
 @Injectable()
 export class WebUserService {
@@ -59,6 +61,17 @@ export class WebUserService {
             },
         })
         await this.addTdIdUser(bot, chatId, data.email, userTgId)
+        schedule.scheduleJob(
+            +new Date() +
+                1000 *
+                    60 *
+                    60 *
+                    24 *
+                    Number(process.env.JWT_EXPIRES_TIME.slice(0, -1)),
+            async () => {
+                await this.badToken(bot, chatId)
+            }
+        )
         return await bot.sendMessage(
             chatId,
             `Отлично! Теперь можно начинать работу`,
@@ -82,8 +95,7 @@ export class WebUserService {
     }
 
     async badToken(bot, chatId) {
-        await bot.deleteMessages(chatId)
-        return await bot.sendMessage(
+        const message = await bot.sendMessage(
             chatId,
             `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`,
             {
@@ -102,5 +114,21 @@ export class WebUserService {
                 }),
             }
         )
+        const batchSize = 80
+        const result = []
+        let currentNumber = message.message_id - 1
+        while (currentNumber >= 1) {
+            const batch = Array.from(
+                { length: batchSize },
+                (_, index) => currentNumber - index
+            )
+            result.push(batch)
+            currentNumber -= batchSize
+        }
+        for (let i = 0; i < result.length; i++) {
+            try {
+                await bot.deleteMessages(chatId, result[i])
+            } catch (error) {}
+        }
     }
 }
