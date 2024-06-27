@@ -11,7 +11,7 @@ export class NotificationService {
             .map((task: Task) => {
                 const rule = new schedule.RecurrenceRule(task.notification)
                 rule.dayOfWeek = task.pereodic
-                schedule.scheduleJob(rule, async () => {
+                schedule.reschedule(rule, async () => {
                     return bot.sendMessage(
                         chatId,
                         `<b>Уведомление о задаче!</b>\n\n<b>Заголовок:</b> ${task.title}\n<b>Описание:</b> ${task.description ? task.description : 'Нет'}\n<b>Дедлайн:</b> ${
