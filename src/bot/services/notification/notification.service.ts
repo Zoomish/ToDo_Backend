@@ -16,7 +16,7 @@ export class NotificationService {
                 schedule.scheduleJob(task.notification, async () => {
                     return bot.sendMessage(
                         chatId,
-                        `<b>Заголовок:</b> ${task.title}\n<b>Описание:</b> ${task.description ? task.description : 'Нет'}\n<b>Дедлайн:</b> ${
+                        `<b>Уведомление о задаче!</b>\n\n<b>Заголовок:</b> ${task.title}\n<b>Описание:</b> ${task.description ? task.description : 'Нет'}\n<b>Дедлайн:</b> ${
                             task.time
                                 ? new Date(task.time).toLocaleString(
                                       undefined,
