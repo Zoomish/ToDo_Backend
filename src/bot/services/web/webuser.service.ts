@@ -106,11 +106,9 @@ export class WebUserService {
                 }),
             }
         )
-        console.log(message)
-
         const batchSize = 80
         const result = []
-        let currentNumber = 1000 + 2
+        let currentNumber = message.message_id - 1
         while (currentNumber >= 1) {
             const batch = Array.from(
                 { length: batchSize },
