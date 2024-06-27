@@ -21,7 +21,7 @@ export class WebUserService {
             )
         }
     }
-    async signIn(bot, chatId, data, userTgId, msg) {
+    async signIn(bot, chatId, data, userTgId) {
         const token = await this.authService.login(data)
         if (!token) {
             return await bot.sendMessage(chatId, `Некоректные данные`)
@@ -62,7 +62,7 @@ export class WebUserService {
         })
         await this.addTdIdUser(bot, chatId, data.email, userTgId)
         schedule.scheduleJob(+new Date() + 1000 * 60, async () => {
-            await this.badToken(bot, chatId, msg)
+            await this.badToken(bot, chatId)
         })
         return await bot.sendMessage(
             chatId,
@@ -81,29 +81,13 @@ export class WebUserService {
             }
         )
     }
-    async signUp(bot, chatId, data, userTgId, msg) {
+    async signUp(bot, chatId, data, userTgId) {
         await this.authService.register(data)
-        return await this.signIn(bot, chatId, data, userTgId, msg)
+        return await this.signIn(bot, chatId, data, userTgId)
     }
 
-    async badToken(bot, chatId, msg) {
-        const batchSize = 80
-        const result = []
-        let currentNumber = msg.message_id + 2
-        while (currentNumber >= 1) {
-            const batch = Array.from(
-                { length: batchSize },
-                (_, index) => currentNumber - index
-            )
-            result.push(batch)
-            currentNumber -= batchSize
-        }
-        for (let i = 0; i < result.length; i++) {
-            try {
-                await bot.deleteMessages(chatId, result[i])
-            } catch (error) {}
-        }
-        return await bot.sendMessage(
+    async badToken(bot, chatId) {
+        const message = await bot.sendMessage(
             chatId,
             `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`,
             {
@@ -122,5 +106,23 @@ export class WebUserService {
                 }),
             }
         )
+        console.log(message)
+
+        const batchSize = 80
+        const result = []
+        let currentNumber = 1000 + 2
+        while (currentNumber >= 1) {
+            const batch = Array.from(
+                { length: batchSize },
+                (_, index) => currentNumber - index
+            )
+            result.push(batch)
+            currentNumber -= batchSize
+        }
+        for (let i = 0; i < result.length; i++) {
+            try {
+                await bot.deleteMessages(chatId, result[i])
+            } catch (error) {}
+        }
     }
 }
