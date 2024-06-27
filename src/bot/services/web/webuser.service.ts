@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { UserService } from '../../../user/user.service'
 import { AuthService } from 'src/auth/auth.service'
+import { NotificationService } from '../notification/notification.service'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const schedule = require('node-schedule')
 
@@ -8,6 +9,7 @@ const schedule = require('node-schedule')
 export class WebUserService {
     constructor(
         private readonly userService: UserService,
+        private readonly notificationService: NotificationService,
         private readonly authService: AuthService
     ) {}
     private async addTdIdUser(bot, chatId, email, userTgId) {
@@ -15,6 +17,13 @@ export class WebUserService {
         if (user.tg_id === null) {
             user.tg_id = userTgId
             user.save()
+            if (user.tasks.length > 0) {
+                await this.notificationService.sendNotification(
+                    bot,
+                    chatId,
+                    user.tasks
+                )
+            }
             return await bot.sendMessage(
                 chatId,
                 `Вы успешно привязали телеграм к аккаунту`

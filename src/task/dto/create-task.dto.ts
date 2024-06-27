@@ -12,4 +12,6 @@ export class CreateTaskDto {
     readonly time: Date
 
     readonly notification: Date
+
+    readonly pereodic: Array<number>
 }

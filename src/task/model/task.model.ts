@@ -16,6 +16,7 @@ interface ProjectCreationAttrs {
     progress: string
     time: Date
     notification: Date
+    pereodic: Array<number>
     userId: number
 }
 
@@ -60,6 +61,9 @@ export class Task extends Model<Task, ProjectCreationAttrs> {
 
     @Column({ type: DataType.DATE, allowNull: true })
     notification: Date
+
+    @Column({ type: DataType.ARRAY(DataType.SMALLINT), allowNull: true })
+    pereodic: Array<number>
 
     @ForeignKey(() => User)
     @Column({ type: DataType.INTEGER })
