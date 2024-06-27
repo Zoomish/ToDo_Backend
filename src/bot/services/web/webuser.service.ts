@@ -89,8 +89,8 @@ export class WebUserService {
     async badToken(bot, chatId, msg) {
         const batchSize = 80
         const result = []
-        let currentNumber = msg.message_id
-        while (currentNumber >= 0) {
+        let currentNumber = msg.message_id + 2
+        while (currentNumber >= 1) {
             const batch = Array.from(
                 { length: batchSize },
                 (_, index) => currentNumber - index
@@ -99,7 +99,9 @@ export class WebUserService {
             currentNumber -= batchSize
         }
         for (let i = 0; i < result.length; i++) {
-            await bot.deleteMessages(chatId, result[i])
+            try {
+                await bot.deleteMessages(chatId, result[i])
+            } catch (error) {}
         }
         return await bot.sendMessage(
             chatId,
