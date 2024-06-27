@@ -8,6 +8,7 @@ import {
     WebAppService,
     WebUserService,
     UsersService,
+    NotificationService,
 } from './services'
 import { TaskModule } from 'src/task/task.module'
 import { UserModule } from 'src/user/user.module'
@@ -24,6 +25,7 @@ import { AuthModule } from 'src/auth/auth.module'
         WebUserService,
         TasksService,
         HelpService,
+        NotificationService,
     ],
     exports: [],
 })
