@@ -21,7 +21,7 @@ export class WebUserService {
             )
         }
     }
-    async signIn(bot, chatId, data, userTgId) {
+    async signIn(bot, chatId, data, userTgId, msg) {
         const token = await this.authService.login(data)
         if (!token) {
             return await bot.sendMessage(chatId, `Некоректные данные`)
@@ -62,7 +62,7 @@ export class WebUserService {
         })
         await this.addTdIdUser(bot, chatId, data.email, userTgId)
         schedule.scheduleJob(+new Date() + 1000 * 60, async () => {
-            await this.badToken(bot, chatId)
+            await this.badToken(bot, chatId, msg)
         })
         return await bot.sendMessage(
             chatId,
@@ -81,13 +81,26 @@ export class WebUserService {
             }
         )
     }
-    async signUp(bot, chatId, data, userTgId) {
+    async signUp(bot, chatId, data, userTgId, msg) {
         await this.authService.register(data)
-        return await this.signIn(bot, chatId, data, userTgId)
+        return await this.signIn(bot, chatId, data, userTgId, msg)
     }
 
-    async badToken(bot, chatId) {
-        await bot.deleteMessages(chatId)
+    async badToken(bot, chatId, msg) {
+        const batchSize = 80
+        const result = []
+        let currentNumber = msg.message_id
+        while (currentNumber >= 0) {
+            const batch = Array.from(
+                { length: batchSize },
+                (_, index) => currentNumber - index
+            )
+            result.push(batch)
+            currentNumber -= batchSize
+        }
+        for (let i = 0; i < result.length; i++) {
+            await bot.deleteMessages(chatId, result[i])
+        }
         return await bot.sendMessage(
             chatId,
             `К сожалению, срок действия авторизации истек. Пожалуйста, войдите в аккаунт снова.`,

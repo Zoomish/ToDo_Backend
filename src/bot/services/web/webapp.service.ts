@@ -16,17 +16,19 @@ export class WebAppService {
                     bot,
                     chatId,
                     data,
-                    msg.from.id
+                    msg.from.id,
+                    msg
                 )
             case 'registration':
                 return this.webUserService.signUp(
                     bot,
                     chatId,
                     data,
-                    msg.from.id
+                    msg.from.id,
+                    msg
                 )
             case 'badtoken':
-                return this.webUserService.badToken(bot, chatId)
+                return this.webUserService.badToken(bot, chatId, msg)
             default:
                 break
         }
