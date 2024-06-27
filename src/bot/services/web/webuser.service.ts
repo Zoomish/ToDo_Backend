@@ -61,9 +61,17 @@ export class WebUserService {
             },
         })
         await this.addTdIdUser(bot, chatId, data.email, userTgId)
-        schedule.scheduleJob(+new Date() + 1000 * 60, async () => {
-            await this.badToken(bot, chatId)
-        })
+        schedule.scheduleJob(
+            +new Date() +
+                1000 *
+                    60 *
+                    60 *
+                    24 *
+                    Number(process.env.JWT_EXPIRES_TIME.slice(0, -1)),
+            async () => {
+                await this.badToken(bot, chatId)
+            }
+        )
         return await bot.sendMessage(
             chatId,
             `Отлично! Теперь можно начинать работу`,
