@@ -13,7 +13,7 @@ export class TasksService {
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
         const tasks = await this.taskService.findByUserTgId(msg?.chat?.id)
-        await this.notificationService.sendNotification(bot, msg.chat.id, tasks)
+        this.notificationService.sendNotification(bot, msg.chat.id, tasks)
         return await tasks.map((task: Task) => {
             return bot.sendMessage(
                 msg.chat.id,
