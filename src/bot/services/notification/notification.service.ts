@@ -3,12 +3,12 @@ import { Task } from 'src/task/model/task.model'
 
 @Injectable()
 export class NotificationService {
-    async sendNotification(bot, msg, tasks) {
-        const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
+    async sendNotification(bot, chatId, tasks) {
+        const msgWait = await bot.sendMessage(chatId, `Получаю данные...`)
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
         return await tasks.map((task: Task) => {
             return bot.sendMessage(
-                msg.chat.id,
+                chatId,
                 `<b>Заголовок:</b> ${task.title}\n<b>Описание:</b> ${task.description ? task.description : 'Нет'}\n<b>Дедлайн:</b> ${
                     task.time
                         ? new Date(task.time).toLocaleString(undefined, {
