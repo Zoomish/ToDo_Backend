@@ -1,16 +1,20 @@
 import { Injectable } from '@nestjs/common'
 import { Task } from 'src/task/model/task.model'
 import { TaskService } from 'src/task/task.service'
+import { NotificationService } from '../notification/notification.service'
 
 @Injectable()
 export class TasksService {
-    constructor(private readonly taskService: TaskService) {}
+    constructor(
+        private readonly taskService: TaskService,
+        private readonly notificationService: NotificationService
+    ) {}
     async getTasks(bot, msg) {
         const msgWait = await bot.sendMessage(msg.chat.id, `Получаю данные...`)
         await bot.deleteMessage(msgWait.chat.id, msgWait.message_id)
         const tasks = await this.taskService.findByUserTgId(msg?.chat?.id)
-        return await tasks.map((task: Task) => {
-            return bot.sendMessage(
+        return await tasks.map(async (task: Task) => {
+            return await bot.sendMessage(
                 msg.chat.id,
                 `<b>Заголовок:</b> ${task.title}\n<b>Описание:</b> ${task.description ? task.description : 'Нет'}\n<b>Дедлайн:</b> ${
                     task.time

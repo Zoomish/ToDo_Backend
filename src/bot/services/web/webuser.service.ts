@@ -18,6 +18,10 @@ export class WebUserService {
             user.tg_id = userTgId
             user.save()
             if (user.tasks.length > 0) {
+                await bot.sendMessage(
+                    chatId,
+                    `Уведомления установлены для всех имеющихся задач`
+                )
                 await this.notificationService.sendNotification(
                     bot,
                     chatId,

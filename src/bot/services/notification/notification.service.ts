@@ -6,10 +6,6 @@ const schedule = require('node-schedule')
 @Injectable()
 export class NotificationService {
     async sendNotification(bot, chatId, tasks) {
-        await bot.sendMessage(
-            chatId,
-            `Уведомления установлены для всех имеющихся задач`
-        )
         return await tasks
             .filter((task: Task) => task.notification !== null)
             .map((task: Task) => {
