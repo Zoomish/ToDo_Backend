@@ -1,4 +1,5 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript'
+import { Category } from 'src/category/model/category.model'
 import { Task } from 'src/task/model/task.model'
 
 interface UserCreationAttrs {
@@ -32,4 +33,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
     @HasMany(() => Task)
     tasks: Task[]
+
+    @HasMany(() => Category)
+    categories: Category[]
 }
