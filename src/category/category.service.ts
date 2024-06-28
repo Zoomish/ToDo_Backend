@@ -8,12 +8,12 @@ import { UpdateTaskDto } from './dto/update-category.dto'
 @Injectable()
 export class CategoryService {
     constructor(
-        @InjectModel(Category) private projectRepository: typeof Category,
+        @InjectModel(Category) private categoryRepository: typeof Category,
         private userService: UserService
     ) {}
     async findByUserId(id: number) {
         const user = await this.userService.findByPk(id)
-        return user.tasks
+        return user.categories
     }
 
     async findByUserTgId(id: number) {
@@ -21,29 +21,29 @@ export class CategoryService {
         if (!user) {
             return
         }
-        return user.tasks
+        return user.categories
     }
 
     async create(dto: CreateTaskDto) {
         const user = await this.userService.findByPk(dto.user_id)
-        return await this.projectRepository.create({
+        return await this.categoryRepository.create({
             ...dto,
             userId: user.id,
         })
     }
 
     async findOne(id: number, taskid: number) {
-        const tasks = await this.findByUserId(id)
-        return await tasks.find((task) => task.id === taskid)
+        const categories = await this.findByUserId(id)
+        return await categories.find((category) => category.id === taskid)
     }
 
     async update(id: number, taskid: number, dto: UpdateTaskDto) {
-        const task = await this.findOne(id, taskid)
-        return await Object.assign(task, { ...dto }).save()
+        const category = await this.findOne(id, taskid)
+        return await Object.assign(category, { ...dto }).save()
     }
 
     async remove(id: number, taskid: number) {
-        const task = await this.findOne(id, taskid)
-        return await task.destroy()
+        const category = await this.findOne(id, taskid)
+        return await category.destroy()
     }
 }
