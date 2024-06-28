@@ -31,22 +31,22 @@ export class CategoryController {
         return this.categoryService.create(dto)
     }
 
-    @Get(':id/:taskid')
-    findOne(@Param('id') id: string, @Param('taskid') taskid: string) {
-        return this.categoryService.findOne(+id, +taskid)
+    @Get(':id/:categoryId')
+    findOne(@Param('id') id: string, @Param('categoryId') categoryId: string) {
+        return this.categoryService.findOne(+id, +categoryId)
     }
 
-    @Patch(':id/:taskid')
+    @Patch(':id/:categoryId')
     update(
         @Param('id') id: string,
-        @Param('taskid') taskid: string,
+        @Param('categoryId') categoryId: string,
         @Body() dto: UpdateTaskDto
     ) {
-        return this.categoryService.update(+id, +taskid, dto)
+        return this.categoryService.update(+id, +categoryId, dto)
     }
 
-    @Delete(':id/:taskid')
-    remove(@Param('id') id: string, @Param('taskid') taskid: string) {
-        return this.categoryService.remove(+id, +taskid)
+    @Delete(':id/:categoryId')
+    remove(@Param('id') id: string, @Param('categoryId') categoryId: string) {
+        return this.categoryService.remove(+id, +categoryId)
     }
 }

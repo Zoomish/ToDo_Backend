@@ -32,18 +32,18 @@ export class CategoryService {
         })
     }
 
-    async findOne(id: number, taskid: number) {
+    async findOne(id: number, categoryId: number) {
         const categories = await this.findByUserId(id)
-        return await categories.find((category) => category.id === taskid)
+        return await categories.find((category) => category.id === categoryId)
     }
 
-    async update(id: number, taskid: number, dto: UpdateTaskDto) {
-        const category = await this.findOne(id, taskid)
+    async update(id: number, categoryId: number, dto: UpdateTaskDto) {
+        const category = await this.findOne(id, categoryId)
         return await Object.assign(category, { ...dto }).save()
     }
 
-    async remove(id: number, taskid: number) {
-        const category = await this.findOne(id, taskid)
+    async remove(id: number, categoryId: number) {
+        const category = await this.findOne(id, categoryId)
         return await category.destroy()
     }
 }
