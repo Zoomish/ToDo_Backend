@@ -11,13 +11,13 @@ import { CategoryService } from './category.service'
 import { UpdateTaskDto } from './dto/update-category.dto'
 import { CreateTaskDto } from './dto/create-category.dto'
 
-@Controller('task')
+@Controller('category')
 export class CategoryController {
-    constructor(private readonly taskService: CategoryService) {}
+    constructor(private readonly categoryService: CategoryService) {}
 
     @Get(':id')
     findAll(@Param('id') id: string) {
-        return this.taskService.findByUserId(+id)
+        return this.categoryService.findByUserId(+id)
     }
     @Get('/get/AAA')
     AAAA() {
@@ -28,12 +28,12 @@ export class CategoryController {
 
     @Post()
     create(@Body() dto: CreateTaskDto) {
-        return this.taskService.create(dto)
+        return this.categoryService.create(dto)
     }
 
     @Get(':id/:taskid')
     findOne(@Param('id') id: string, @Param('taskid') taskid: string) {
-        return this.taskService.findOne(+id, +taskid)
+        return this.categoryService.findOne(+id, +taskid)
     }
 
     @Patch(':id/:taskid')
@@ -42,11 +42,11 @@ export class CategoryController {
         @Param('taskid') taskid: string,
         @Body() dto: UpdateTaskDto
     ) {
-        return this.taskService.update(+id, +taskid, dto)
+        return this.categoryService.update(+id, +taskid, dto)
     }
 
     @Delete(':id/:taskid')
     remove(@Param('id') id: string, @Param('taskid') taskid: string) {
-        return this.taskService.remove(+id, +taskid)
+        return this.categoryService.remove(+id, +taskid)
     }
 }
