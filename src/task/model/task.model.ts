@@ -53,7 +53,9 @@ export class Task extends Model<Task, ProjectCreationAttrs> {
     @Column({
         type: DataType.STRING(4048),
         allowNull: false,
-        defaultValue: Progress['NotStarted'],
+        defaultValue: Object.keys(Progress).filter(
+            (k) => Progress[k] === 'Не начато'
+        ),
     })
     progress: Progress
 
