@@ -1,6 +1,8 @@
 export class CreateTaskDto {
     readonly user_id: number
 
+    readonly categoryId: number
+
     readonly title: string
 
     readonly description: string
