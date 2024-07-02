@@ -10,6 +10,8 @@ import { TaskModule } from './task/task.module'
 import { UserModule } from './user/user.module'
 import { User } from './user/model/user.model'
 import { AuthModule } from './auth/auth.module'
+import { Category } from './category/model/category.model'
+import { CategoryModule } from './category/category.module'
 
 @Module({
     imports: [
@@ -36,13 +38,14 @@ import { AuthModule } from './auth/auth.module'
                     rejectUnauthorized: false,
                 },
             },
-            models: [Task, User],
+            models: [Task, User, Category],
             autoLoadModels: true,
             synchronize: true,
         }),
         UserModule,
         TaskModule,
         AuthModule,
+        CategoryModule,
     ],
 })
 export class AppModule {}

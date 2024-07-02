@@ -3,6 +3,7 @@ import {
     Column,
     DataType,
     ForeignKey,
+    HasMany,
     Model,
     Table,
 } from 'sequelize-typescript'
@@ -12,15 +13,10 @@ import { User } from 'src/user/model/user.model'
 interface ProjectCreationAttrs {
     title: string
     description: string
-    image: string
-    tags: string
-    progress: string
-    time: Date
-    notification: Date
-    pereodic: Array<number>
     userId: number
+    taskId: number
 }
-@Table({ tableName: 'task' })
+@Table({ tableName: 'category' })
 export class Category extends Model<Category, ProjectCreationAttrs> {
     @Column({
         type: DataType.BIGINT,
@@ -36,25 +32,17 @@ export class Category extends Model<Category, ProjectCreationAttrs> {
     @Column({ type: DataType.STRING(4048), allowNull: true })
     description: string
 
-    @Column({ type: DataType.STRING(4048), allowNull: true })
-    image: string
-
-    @Column({ type: DataType.STRING(4048), allowNull: true })
-    tags: string
-
-    @Column({ type: DataType.DATE, allowNull: true })
-    time: Date
-
-    @Column({ type: DataType.DATE, allowNull: true })
-    notification: Date
-
-    @Column({ type: DataType.ARRAY(DataType.SMALLINT), allowNull: true })
-    pereodic: Array<number>
-
-    @ForeignKey(() => User)
+    @ForeignKey(() => Task)
     @Column({ type: DataType.INTEGER })
     taskId: number
 
-    @BelongsTo(() => Task)
+    @HasMany(() => Task)
     task: Task
+
+    @ForeignKey(() => User)
+    @Column({ type: DataType.INTEGER })
+    userId: number
+
+    @BelongsTo(() => User)
+    user: User
 }

@@ -6,6 +6,7 @@ import {
     Model,
     Table,
 } from 'sequelize-typescript'
+import { Category } from 'src/category/model/category.model'
 import { User } from 'src/user/model/user.model'
 
 interface ProjectCreationAttrs {
@@ -71,4 +72,11 @@ export class Task extends Model<Task, ProjectCreationAttrs> {
 
     @BelongsTo(() => User)
     user: User
+
+    @ForeignKey(() => Category)
+    @Column({ type: DataType.INTEGER })
+    categoryId: number
+
+    @BelongsTo(() => Category)
+    category: Category
 }
