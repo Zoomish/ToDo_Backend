@@ -32,10 +32,6 @@ export class Category extends Model<Category, ProjectCreationAttrs> {
     @Column({ type: DataType.STRING(4048), allowNull: true })
     description: string
 
-    @ForeignKey(() => Task)
-    @Column({ type: DataType.INTEGER })
-    taskId: number
-
     @HasMany(() => Task)
     task: Task
 
