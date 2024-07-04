@@ -55,9 +55,9 @@ export class Task extends Model<Task, ProjectCreationAttrs> {
         allowNull: false,
         defaultValue: Object.keys(Progress).filter(
             (k) => Progress[k] === 'Не начато'
-        ),
+        )[0],
     })
-    progress: Progress
+    progress: keyof typeof Progress
 
     @Column({ type: DataType.DATE, allowNull: true })
     time: Date
